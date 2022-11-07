@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/constants/enums.dart';
+
+import '../../../../constants/colors.dart';
+import '../../../../constants/enums.dart';
+
 
 class PaymentCard extends StatefulWidget {
   const PaymentCard({Key? key}) : super(key: key);

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store/constants/text_style.dart';
+
+import '../../../../constants/text_style.dart';
+
 
 class TextBanner extends StatelessWidget {
   const TextBanner({super.key});

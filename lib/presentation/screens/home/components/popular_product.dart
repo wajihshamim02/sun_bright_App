@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store/data/models/product.dart';
-import 'package:store/Utilities/size_config.dart';
 
+
+import '../../../../Utilities/size_config.dart';
+import '../../../../data/models/product.dart';
 import 'product_card.dart';
 
 

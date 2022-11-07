@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store/presentation/widgets/default_button.dart';
+
+import 'package:sun_bright/presentation/widgets/default_button.dart';
 
 class NoFavorite extends StatelessWidget {
   const NoFavorite({Key? key}) : super(key: key);

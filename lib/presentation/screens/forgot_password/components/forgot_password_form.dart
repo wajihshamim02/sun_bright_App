@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/constants/form_messages.dart';
-import 'package:store/presentation/widgets/custom_button.dart';
+import 'package:sun_bright/presentation/widgets/custom_button.dart';
+
+import '../../../../constants/colors.dart';
+import '../../../../constants/form_messages.dart';
+
 
 class ForgotPasswordForm extends StatefulWidget {
   const ForgotPasswordForm({Key? key}) : super(key: key);
@@ -68,6 +70,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
           suffixIcon: Icon(Icons.email)),
       validator: (newEmail) {
         if (newEmail!.isEmpty) {
+          TextFormField kEmailNullError;
           return kEmailNullError;
         } else if (!emailValidatorRegExp.hasMatch(newEmail)) {
           return kInvalidEmailError;

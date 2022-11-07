@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store/Data/models/category.dart';
 
-import 'package:store/constants/colors.dart';
-import 'package:store/presentation/bloc/search/search_bloc.dart';
-import 'package:store/presentation/bloc/search/search_event.dart';
+import '../../../../constants/colors.dart';
+import '../../../../data/models/category.dart';
+import '../../../bloc/search/search_bloc.dart';
+import '../../../bloc/search/search_event.dart';
+
 
 class Categories extends StatefulWidget {
    Categories({Key? key}) : super(key: key);

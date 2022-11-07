@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/constants/text_style.dart';
-import 'package:store/presentation/bloc/search/search_bloc.dart';
-import 'package:store/presentation/bloc/search/search_state.dart';
-import 'package:store/presentation/screens/product_details/product_details_screen.dart';
+import 'package:sun_bright/presentation/bloc/search/search_state.dart';
 
+
+import '../../../../Utilities/size_config.dart';
+import '../../../../constants/text_style.dart';
+import '../../../bloc/search/search_bloc.dart';
+import '../../product_details/product_details_screen.dart';
 import 'special_offer_card.dart';
 
 class SpecialOffers extends StatelessWidget {

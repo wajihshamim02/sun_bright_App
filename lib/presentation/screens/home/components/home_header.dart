@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/presentation/widgets/search_field.dart';
+
+import '../../../../Utilities/size_config.dart';
+import '../../../widgets/search_field.dart';
+
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({Key? key}) : super(key: key);

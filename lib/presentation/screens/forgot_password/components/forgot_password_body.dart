@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store/presentation/widgets/custom_header.dart';
 
+import '../../../widgets/custom_header.dart';
 import 'forgot_password_form.dart';
 
 class ForgotPasswordBody extends StatelessWidget {
