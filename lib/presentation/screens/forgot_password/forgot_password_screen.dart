@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sun_bright/constants/colors.dart';
 
-import '../../../constants/colors.dart';
 import 'components/forgot_password_body.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {

@@ -87,26 +87,26 @@ class _SignInFormState extends State<SignInForm> {
                   forgroundColor: Colors.white,
                   width: MediaQuery.of(context).size.width * 0.85,
                   onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      // Check user Identity
-                      bool result = await _sqliteDbHelper.checkIdentity(
-                          email: email, password: password);
-                      if (result) {
-                        KeyboardUtil.hideKeyboard(context);
-                        Navigator.push(
-                            context,
-                            CustomScaleTransition(
-                                nextPageUrl: HomeScreen.routeName,
-                                nextPage: const HomeScreen()));
-                      } else {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text("Please check your email or password"),
-                          backgroundColor: Colors.black38,
-                        ));
-                      }
-                    }
+                    // // if (_formKey.currentState!.validate()) {
+                    //   _formKey.currentState!.save();
+                    //   // Check user Identity
+                    //   bool result = await _sqliteDbHelper.checkIdentity(
+                    //       email: email, password: password);
+                    //   if (result) {
+                    //     KeyboardUtil.hideKeyboard(context);
+                    Navigator.push(
+                        context,
+                        CustomScaleTransition(
+                            nextPageUrl: HomeScreen.routeName,
+                            nextPage: const HomeScreen()));
+                    // } else {
+                    //   ScaffoldMessenger.of(context)
+                    //       .showSnackBar(const SnackBar(
+                    //     content: Text("Please check your email or password"),
+                    //     backgroundColor: Colors.black38,
+                    //   ));
+                    // }
+                    // }
                   },
                 ),
                 SizedBox(
@@ -134,46 +134,46 @@ class _SignInFormState extends State<SignInForm> {
 
   TextFormField emailFormField() {
     return TextFormField(
-      key: _emailFormFieldKey,
-      onSaved: (newEmail) {
-        setState(() {
-          email = newEmail;
-        });
-      },
-      onChanged: (newEmail) {
-        _emailFormFieldKey.currentState!
-            .validate(); // call emailFormField validator
-      },
-      onFieldSubmitted: (newEmail) {
-        passwordFocusNode.requestFocus();
-      },
+      // key: _emailFormFieldKey,
+      // onSaved: (newEmail) {
+      //   setState(() {
+      //     email = newEmail;
+      //   });
+      // },
+      // onChanged: (newEmail) {
+      //   _emailFormFieldKey.currentState!
+      //       .validate(); // call emailFormField validator
+      // },
+      // onFieldSubmitted: (newEmail) {
+      //   passwordFocusNode.requestFocus();
+      // },
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
           labelText: "Email", hintText: "Enter your email"),
-      validator: (newEmail) {
-        if (newEmail!.isEmpty) {
-          return kEmailNullError;
-        } else if (!emailValidatorRegExp.hasMatch(newEmail)) {
-          return kInvalidEmailError;
-        }
-        return null;
-      },
+      // validator: (newEmail) {
+      //   if (newEmail!.isEmpty) {
+      //     return kEmailNullError;
+      //   } else if (!emailValidatorRegExp.hasMatch(newEmail)) {
+      //     return kInvalidEmailError;
+      //   }
+      //   return null;
+      // },
     );
   }
 
   TextFormField passwordFormField() {
     return TextFormField(
-      key: _passwordFormFieldKey,
-      focusNode: passwordFocusNode,
-      onSaved: (newPassword) {
-        setState(() {
-          password = newPassword;
-        });
-      },
-      onChanged: (newPassword) {
-        _passwordFormFieldKey.currentState!
-            .validate(); // call passowrd field validator
-      },
+      // key: _passwordFormFieldKey,
+      // focusNode: passwordFocusNode,
+      // onSaved: (newPassword) {
+      //   setState(() {
+      //     password = newPassword;
+      //   });
+      // },
+      // onChanged: (newPassword) {
+      //   _passwordFormFieldKey.currentState!
+      //       .validate(); // call passowrd field validator
+      // },
       keyboardType: TextInputType.visiblePassword,
       obscureText: _obscureText,
       decoration: InputDecoration(
@@ -192,14 +192,14 @@ class _SignInFormState extends State<SignInForm> {
               });
             },
           )),
-      validator: (newPassword) {
-        if (newPassword!.isEmpty) {
-          return kPasswordNullError;
-        } else if (newPassword.length < 8) {
-          return kShortPasswordError;
-        }
-        return null;
-      },
+      // validator: (newPassword) {
+      //   if (newPassword!.isEmpty) {
+      //     return kPasswordNullError;
+      //   } else if (newPassword.length < 8) {
+      //     return kShortPasswordError;
+      //   }
+      //   return null;
+      // },
     );
   }
 

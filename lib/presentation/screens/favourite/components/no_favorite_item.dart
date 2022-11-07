@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:sun_bright/presentation/widgets/default_button.dart';
+import '../../../widgets/default_button.dart';
 
 class NoFavorite extends StatelessWidget {
   const NoFavorite({Key? key}) : super(key: key);
@@ -25,7 +25,9 @@ class NoFavorite extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
         const Opacity(
           opacity: 0.57,
           child: Padding(
@@ -43,7 +45,7 @@ class NoFavorite extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: DefaultButton(
-            onPressed: (){},
+            onPressed: () {},
             backgroundColor: const Color(0xff57bfe9),
             forgroundColor: Colors.white,
             text: "Start ordering",

@@ -20,6 +20,7 @@ class ProductDetailsScreen extends StatelessWidget {
         child: CustomAppBar(
           productId: product.id,
           isProductFavourite: product.isFavourite,
+          title: '',
         ),
       ),
       body: DetailsScreenContent(product: product),

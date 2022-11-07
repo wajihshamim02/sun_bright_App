@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:sun_bright/Utilities/size_config.dart';
+import 'package:sun_bright/Utilities/sqfilte_helper.dart';
 import 'package:sun_bright/constants/colors.dart';
+import 'package:sun_bright/constants/form_messages.dart';
+import 'package:sun_bright/data/models/user.dart';
 
-import '../../../../Utilities/sqfilte_helper.dart';
-import '../../../../constants/form_messages.dart';
-import '../../../../data/models/user.dart';
 import '../../../widgets/custom_page_transition.dart';
 import '../../../widgets/custom_suffix_icon.dart';
 import '../../../widgets/default_button.dart';
@@ -14,9 +13,7 @@ import '../../otp_screen/otp_screen.dart';
 import '../../sign_up/components/sign_up_form.dart';
 
 class CompleteProfileForm extends StatefulWidget {
-  final ScreenArgs userData;
-  const CompleteProfileForm({Key? key, required this.userData})
-      : super(key: key);
+  const CompleteProfileForm({Key? key}) : super(key: key);
 
   @override
   _CompleteProfileFormState createState() => _CompleteProfileFormState();
@@ -69,8 +66,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
                   try {
-                    bool result = await _sqliteDbHelper.checkEmail(
-                        email: widget.userData.email);
+                    bool result =
+                        await _sqliteDbHelper.checkEmail(email: "saad");
 
                     if (result) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -84,8 +81,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
                           lastName: lastName!,
                           phoneNumber: phoneNumber!,
                           address: address!,
-                          email: widget.userData.email,
-                          password: widget.userData.password);
+                          email: "",
+                          password: "");
                       await _sqliteDbHelper.insertUser(user);
                       Navigator.push(
                           context,

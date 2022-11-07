@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:sun_bright/presentation/bloc/favorite/favorite_event.dart';
-import 'package:sun_bright/presentation/screens/product_details/components/custom_app_bar.dart';
-import 'package:sun_bright/presentation/screens/product_details/product_details_screen.dart';
-import 'package:sun_bright/presentation/screens/search/components/item_card.dart';
+import 'package:sun_bright/presentation/bloc/favorite/favorite_bloc.dart';
+import 'package:sun_bright/presentation/bloc/favorite/favorite_state.dart';
 
-import '../../bloc/favorite/favorite_bloc.dart';
-import '../../bloc/favorite/favorite_state.dart';
+import '../../bloc/favorite/favorite_event.dart';
+import '../../widgets/custom_app_bar.dart';
+import '../product_details/product_details_screen.dart';
+import '../search/components/item_card.dart';
 import 'components/no_favorite_item.dart';
 
 class FavouriteScreen extends StatefulWidget {
