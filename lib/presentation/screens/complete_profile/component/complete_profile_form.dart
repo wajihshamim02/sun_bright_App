@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:store/data/models/user.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/presentation/widgets/custom_page_transition.dart';
-import 'package:store/presentation/widgets/custom_suffix_icon.dart';
-import 'package:store/presentation/widgets/default_button.dart';
-import 'package:store/presentation/widgets/form_errors.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/Utilities/sqfilte_helper.dart';
-import 'package:store/constants/form_messages.dart';
-import 'package:store/presentation/screens/otp_screen/otp_screen.dart';
-import 'package:store/presentation/screens/sign_up/components/sign_up_form.dart';
+
+import 'package:sun_bright/Utilities/size_config.dart';
+import 'package:sun_bright/constants/colors.dart';
+
+import '../../../../Utilities/sqfilte_helper.dart';
+import '../../../../constants/form_messages.dart';
+import '../../../../data/models/user.dart';
+import '../../../widgets/custom_page_transition.dart';
+import '../../../widgets/custom_suffix_icon.dart';
+import '../../../widgets/default_button.dart';
+import '../../../widgets/form_errors.dart';
+import '../../otp_screen/otp_screen.dart';
+import '../../sign_up/components/sign_up_form.dart';
 
 class CompleteProfileForm extends StatefulWidget {
   final ScreenArgs userData;

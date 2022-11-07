@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/presentation/screens/sign_up/components/sign_up_form.dart';
+
+import '../../../constants/colors.dart';
+import '../sign_in/components/sign_in_form.dart';
 import 'component/complete_profile_body.dart';
 
 class CompleteProfileScreen extends StatelessWidget {

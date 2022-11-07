@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/constants/colors.dart';
+
+import '../../../../Utilities/size_config.dart';
+import '../../../../constants/colors.dart';
+
 
 class SpecialOfferCard extends StatelessWidget {
   final String? category, image, title;

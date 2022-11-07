@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/presentation/screens/checkout/components/payment_card.dart';
-import 'package:store/presentation/screens/checkout/components/shipping_card.dart';
-import 'package:store/presentation/widgets/default_button.dart';
+
+import 'package:sun_bright/presentation/screens/checkout/components/payment_card.dart';
+import 'package:sun_bright/presentation/screens/checkout/components/shipping_card.dart';
+
+import '../../../../Utilities/size_config.dart';
+import '../../../../constants/colors.dart';
+import '../../../widgets/default_button.dart';
 
 class CheckoutBody extends StatelessWidget {
   const CheckoutBody({Key? key}) : super(key: key);

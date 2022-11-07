@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/constants/text_style.dart';
+import 'package:sun_bright/constants/colors.dart';
+import 'package:sun_bright/constants/text_style.dart';
+
+import '../../../../Utilities/size_config.dart';
+
 
 class DrawerMenuItem extends StatelessWidget {
   final String title;

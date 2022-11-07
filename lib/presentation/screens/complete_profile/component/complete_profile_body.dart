@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/presentation/screens/sign_up/components/sign_up_form.dart';
 
+
+import '../../../../Utilities/size_config.dart';
+import '../../sign_in/components/sign_in_form.dart';
 import 'complete_profile_form.dart';
 
+// ignore: must_be_immutable
 class CompleteProfileBody extends StatelessWidget {
    late ScreenArgs userData;
    CompleteProfileBody({Key? key,required this.userData}) : super(key: key);

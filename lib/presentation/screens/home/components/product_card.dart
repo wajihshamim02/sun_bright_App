@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:store/data/models/product.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/presentation/screens/product_details/product_details_screen.dart';
+
+import '../../../../Utilities/size_config.dart';
+import '../../../../constants/colors.dart';
+import '../../../../data/models/product.dart';
+import '../../product_details/product_details_screen.dart';
+
 
 class ProductCard extends StatefulWidget {
   final Product product;

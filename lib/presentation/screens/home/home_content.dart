@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:store/presentation/screens/home/components/popular_product.dart';
-import 'package:store/presentation/widgets/custom_bottom_navbar.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/constants/enums.dart';
+
+import '../../../constants/colors.dart';
+import '../../../constants/enums.dart';
+import '../../widgets/custom_bottom_navbar.dart';
 import 'components/categories.dart';
 import '../../widgets/search_field.dart';
+import 'components/popular_product.dart';
 import 'components/special_offers.dart';
 import 'components/text_banner.dart';
 

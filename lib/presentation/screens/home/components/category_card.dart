@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:store/Utilities/size_config.dart';
+
+import '../../../../Utilities/size_config.dart';
+
 
 class CategoryCard extends StatelessWidget {
 

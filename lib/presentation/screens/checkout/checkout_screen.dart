@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/presentation/widgets/custom_app_bar.dart';
+
+import '../../../Utilities/size_config.dart';
+import '../../widgets/custom_app_bar.dart';
 import 'components/checkout_body.dart';
 
 class CheckoutScreen extends StatelessWidget {
