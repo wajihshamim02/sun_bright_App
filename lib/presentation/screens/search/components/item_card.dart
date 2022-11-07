@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/constants/colors.dart';
+
+import '../../../../Utilities/size_config.dart';
+import '../../../../constants/colors.dart';
 
 class ItemCard extends StatelessWidget {
-  final String?  image, title, price;
+  final String? image, title, price;
   final GestureTapCallback onTap;
   final bool evenItem;
 
   const ItemCard(
       {Key? key,
-        required this.image,
-        required this.onTap,
-        required this.title,
-        required this.price, required this.evenItem})
+      required this.image,
+      required this.onTap,
+      required this.title,
+      required this.price,
+      required this.evenItem})
       : super(key: key);
 
   @override
@@ -45,7 +47,10 @@ class ItemCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
                           children: [
-                            SizedBox(height: SizeConfig.getProportionateScreenHeight(90),),
+                            SizedBox(
+                              height:
+                                  SizeConfig.getProportionateScreenHeight(90),
+                            ),
                             Text(
                               title!,
                               style: const TextStyle(
@@ -55,8 +60,9 @@ class ItemCard extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                             SizedBox(
-                              height: SizeConfig.getProportionateScreenHeight(10),
+                            SizedBox(
+                              height:
+                                  SizeConfig.getProportionateScreenHeight(10),
                             ),
                             Text(
                               "\$$price",

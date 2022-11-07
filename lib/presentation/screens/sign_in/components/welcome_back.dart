@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/presentation/widgets/custom_circle.dart';
+import 'package:sun_bright/constants/colors.dart';
+
+import '../../../widgets/custom_circle.dart';
 
 class WelcomeBack extends StatelessWidget {
   const WelcomeBack({Key? key}) : super(key: key);

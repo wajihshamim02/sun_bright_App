@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store/constants/colors.dart';
+import 'package:sun_bright/constants/colors.dart';
 
 import 'components/sign_up_body.dart';
 

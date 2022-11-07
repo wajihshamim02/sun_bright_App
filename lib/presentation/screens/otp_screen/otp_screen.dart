@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/constants/colors.dart';
+import 'package:sun_bright/constants/colors.dart';
 
+import '../../../Utilities/size_config.dart';
 import 'components/otp_body.dart';
 
 class OTPScreen extends StatelessWidget {

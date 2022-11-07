@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store/Data/models/product.dart';
-import 'package:store/constants/form_field_styles.dart';
-import 'package:store/constants/text_style.dart';
-import 'package:store/presentation/bloc/search/search_bloc.dart';
-import 'package:store/presentation/screens/search/search_screen.dart';
+import 'package:sun_bright/constants/form_field_styles.dart';
+import 'package:sun_bright/constants/text_style.dart';
+import 'package:sun_bright/presentation/bloc/search/search_bloc.dart';
+import 'package:sun_bright/presentation/screens/search/search_screen.dart';
+
+import '../../data/models/product.dart';
 
 class SearchField extends StatelessWidget {
   SearchField({Key? key}) : super(key: key);

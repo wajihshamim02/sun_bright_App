@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:store/data/models/product.dart';
+
+import '../../../data/models/product.dart';
 
 abstract class FavoriteState extends Equatable {
   const FavoriteState();

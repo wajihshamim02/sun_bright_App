@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store/data/models/product.dart';
+
+import '../../../data/models/product.dart';
 import 'components/custom_app_bar.dart';
 import 'components/product_details_content.dart';
 

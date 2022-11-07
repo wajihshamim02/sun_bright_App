@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store/Data/models/product.dart';
-import 'package:store/presentation/bloc/search/search_event.dart';
-import 'package:store/presentation/screens/product_details/product_details_screen.dart';
-import 'package:store/presentation/screens/search/components/item_not_found.dart';
-import 'package:store/presentation/screens/search/components/search_app_bar.dart';
-import 'package:store/presentation/bloc/search/search_state.dart';
+import 'package:sun_bright/presentation/bloc/search/search_state.dart';
 
+import '../../../data/models/product.dart';
+import '../../bloc/search/search_event.dart';
+import '../product_details/product_details_screen.dart';
 import 'components/item_card.dart';
+import 'components/item_not_found.dart';
+import 'components/search_app_bar.dart';
 
 class ProductSearchDelegate extends CustomSearchDelegate<Product> {
-  final Bloc<SearchEvent,SearchState> productBloc;
+  final Bloc<SearchEvent, SearchState> productBloc;
 
   ProductSearchDelegate({required this.productBloc});
 
@@ -44,55 +44,59 @@ class ProductSearchDelegate extends CustomSearchDelegate<Product> {
     return SafeArea(
       child: BlocBuilder(
         bloc: productBloc,
-        builder: (BuildContext context,SearchState state){
-          if(state is SearchLoadingState){
+        builder: (BuildContext context, SearchState state) {
+          if (state is SearchLoadingState) {
             return const Align(
-              alignment: Alignment.topCenter,
+                alignment: Alignment.topCenter,
                 child: CircularProgressIndicator());
           }
 
-          if(state is SearchSuccessFetchDataState){
-            if(state.products.isEmpty){
+          if (state is SearchSuccessFetchDataState) {
+            if (state.products.isEmpty) {
               return const ItemNotFound();
-            }else{
+            } else {
               return Center(
-                child: Column(
-                  children: [
-                    Text(
-                      "Found  ${state.products.length} results",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 28,
-                        fontFamily: "Raleway",
-                        fontWeight: FontWeight.w600,
+                  child: Column(
+                children: [
+                  Text(
+                    "Found  ${state.products.length} results",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 28,
+                      fontFamily: "Raleway",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Wrap(
+                        spacing: 15,
+                        children: List.generate(
+                          state.products.length,
+                          (index) {
+                            return ItemCard(
+                                image: state.products[index].image,
+                                price: "From ${state.products[index].price}",
+                                title: state.products[index].title,
+                                evenItem: (index % 2 == 0) ? true : false,
+                                onTap: () => Navigator.pushNamed(
+                                    context, ProductDetailsScreen.routeName,
+                                    arguments: state.products[index]));
+                          },
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 15,),
-                          Expanded(
-                            child: SingleChildScrollView(
-                              child: Wrap(
-                                spacing: 15,
-                                children:  List.generate(state.products.length, (index){
-                                  return ItemCard(
-                                      image: state.products[index].image,
-                                      price: "From ${state.products[index].price}",
-                                      title: state.products[index].title,
-                                      evenItem : (index % 2 ==0) ? true : false,
-                                      onTap: () => Navigator.pushNamed(context, ProductDetailsScreen.routeName,arguments: state.products[index])
-                                  );
-                                },
-                                ),
-                            ),
-                              ),
-                        ),
-                          ],
-                      )
-                );
+                  ),
+                ],
+              ));
             }
           }
 
-          if(state is SearchErrorFetchDataState){
+          if (state is SearchErrorFetchDataState) {
             return Center(
               child: Text(state.errorMessage),
             );
@@ -103,6 +107,7 @@ class ProductSearchDelegate extends CustomSearchDelegate<Product> {
     );
   }
 }
+
 Future<T?> showProductSearchDelegate<T>({
   required BuildContext context,
   required CustomSearchDelegate<T> delegate,
@@ -114,14 +119,13 @@ Future<T?> showProductSearchDelegate<T>({
   assert(useRootNavigator != null);
   delegate.query = query ?? delegate.query;
   delegate._currentBody = _SearchBody.suggestions;
-  return Navigator.of(context, rootNavigator: useRootNavigator).push(_SearchPageRoute<T>(
+  return Navigator.of(context, rootNavigator: useRootNavigator)
+      .push(_SearchPageRoute<T>(
     delegate: delegate,
   ));
 }
 
-
 abstract class CustomSearchDelegate<T> {
-
   CustomSearchDelegate({
     this.searchFieldLabel,
     this.searchFieldStyle,
@@ -147,7 +151,9 @@ abstract class CustomSearchDelegate<T> {
     assert(theme != null);
     return theme.copyWith(
       appBarTheme: AppBarTheme(
-        backgroundColor: colorScheme.brightness == Brightness.dark ? Colors.grey[900] : Colors.white,
+        backgroundColor: colorScheme.brightness == Brightness.dark
+            ? Colors.grey[900]
+            : Colors.white,
         iconTheme: theme.primaryIconTheme.copyWith(color: Colors.grey),
       ),
       inputDecorationTheme: searchFieldDecorationTheme ??
@@ -157,12 +163,14 @@ abstract class CustomSearchDelegate<T> {
           ),
     );
   }
+
   String get query => _queryTextController.text;
 
   set query(String value) {
     assert(query != null);
     _queryTextController.text = value;
-    _queryTextController.selection = TextSelection.fromPosition(TextPosition(offset: _queryTextController.text.length));
+    _queryTextController.selection = TextSelection.fromPosition(
+        TextPosition(offset: _queryTextController.text.length));
   }
 
   void showResults(BuildContext context) {
@@ -171,7 +179,8 @@ abstract class CustomSearchDelegate<T> {
   }
 
   void showSuggestions(BuildContext context) {
-    assert(_focusNode != null, '_focusNode must be set by route before showSuggestions is called.');
+    assert(_focusNode != null,
+        '_focusNode must be set by route before showSuggestions is called.');
     _focusNode!.requestFocus();
     _currentBody = _SearchBody.suggestions;
   }
@@ -200,9 +209,11 @@ abstract class CustomSearchDelegate<T> {
 
   final TextEditingController _queryTextController = TextEditingController();
 
-  final ProxyAnimation _proxyAnimation = ProxyAnimation(kAlwaysDismissedAnimation);
+  final ProxyAnimation _proxyAnimation =
+      ProxyAnimation(kAlwaysDismissedAnimation);
 
-  final ValueNotifier<_SearchBody?> _currentBodyNotifier = ValueNotifier<_SearchBody?>(null);
+  final ValueNotifier<_SearchBody?> _currentBodyNotifier =
+      ValueNotifier<_SearchBody?>(null);
 
   _SearchBody? get _currentBody => _currentBodyNotifier.value;
   set _currentBody(_SearchBody? value) {
@@ -211,6 +222,7 @@ abstract class CustomSearchDelegate<T> {
 
   _SearchPageRoute<T>? _route;
 }
+
 enum _SearchBody {
   suggestions,
   results,
@@ -221,10 +233,10 @@ class _SearchPageRoute<T> extends PageRoute<T> {
     required this.delegate,
   }) : assert(delegate != null) {
     assert(
-    delegate._route == null,
-    'The ${delegate.runtimeType} instance is currently used by another active '
-        'search. Please close that search by calling close() on the SearchDelegate '
-        'before opening another search with the same delegate instance.',
+      delegate._route == null,
+      'The ${delegate.runtimeType} instance is currently used by another active '
+      'search. Please close that search by calling close() on the SearchDelegate '
+      'before opening another search with the same delegate instance.',
     );
     delegate._route = this;
   }
@@ -245,11 +257,11 @@ class _SearchPageRoute<T> extends PageRoute<T> {
 
   @override
   Widget buildTransitions(
-      BuildContext context,
-      Animation<double> animation,
-      Animation<double> secondaryAnimation,
-      Widget child,
-      ) {
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
     return FadeTransition(
       opacity: animation,
       child: child,
@@ -265,10 +277,10 @@ class _SearchPageRoute<T> extends PageRoute<T> {
 
   @override
   Widget buildPage(
-      BuildContext context,
-      Animation<double> animation,
-      Animation<double> secondaryAnimation,
-      ) {
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+  ) {
     return _SearchPage<T>(
       delegate: delegate,
       animation: animation,
@@ -336,7 +348,8 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
     if (widget.delegate != oldWidget.delegate) {
       oldWidget.delegate._queryTextController.removeListener(_onQueryChanged);
       widget.delegate._queryTextController.addListener(_onQueryChanged);
-      oldWidget.delegate._currentBodyNotifier.removeListener(_onSearchBodyChanged);
+      oldWidget.delegate._currentBodyNotifier
+          .removeListener(_onSearchBodyChanged);
       widget.delegate._currentBodyNotifier.addListener(_onSearchBodyChanged);
       oldWidget.delegate._focusNode = null;
       widget.delegate._focusNode = focusNode;
@@ -344,7 +357,8 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
   }
 
   void _onFocusChanged() {
-    if (focusNode.hasFocus && widget.delegate._currentBody != _SearchBody.suggestions) {
+    if (focusNode.hasFocus &&
+        widget.delegate._currentBody != _SearchBody.suggestions) {
       widget.delegate.showSuggestions(context);
     }
   }
@@ -365,10 +379,10 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
     final ThemeData theme = widget.delegate.appBarTheme(context);
-    final String searchFieldLabel = widget.delegate.searchFieldLabel
-        ?? MaterialLocalizations.of(context).searchFieldLabel;
+    final String searchFieldLabel = widget.delegate.searchFieldLabel ??
+        MaterialLocalizations.of(context).searchFieldLabel;
     Widget? body;
-    switch(widget.delegate._currentBody) {
+    switch (widget.delegate._currentBody) {
       case _SearchBody.suggestions:
         body = KeyedSubtree(
           key: const ValueKey<_SearchBody>(_SearchBody.suggestions),
@@ -406,28 +420,33 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
       child: Theme(
         data: theme,
         child: Scaffold(
-          // Added by me
+            // Added by me
             extendBodyBehindAppBar: true,
             appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(150),
                 child: SafeArea(
                   child: Column(
                     children: [
-                      const SizedBox(height: 20,),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Row(
                           children: [
                             IconButton(
                                 icon: const Icon(Icons.arrow_back),
-                                onPressed: (){
+                                onPressed: () {
                                   Navigator.pop(context);
-                                }
+                                }),
+                            const SizedBox(
+                              width: 20,
                             ),
-                            const SizedBox(width: 20,),
                             Expanded(
-                                child: SearchAppBar(queryTextController: widget.delegate._queryTextController,)
-                            ),
+                                child: SearchAppBar(
+                              queryTextController:
+                                  widget.delegate._queryTextController,
+                            )),
                           ],
                         ),
                       ),
@@ -437,8 +456,7 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
             body: AnimatedSwitcher(
               duration: const Duration(milliseconds: 100),
               child: body,
-            )
-        ),
+            )),
       ),
     );
   }

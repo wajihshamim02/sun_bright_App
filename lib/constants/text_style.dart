@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store/Utilities/size_config.dart';
 
+import '../Utilities/size_config.dart';
 import 'colors.dart';
 
 final headingStyle = TextStyle(

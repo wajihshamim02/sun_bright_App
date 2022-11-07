@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:store/Utilities/size_config.dart';
-
+import 'package:sun_bright/Utilities/size_config.dart';
 
 class FormError extends StatelessWidget {
   final List<String?> errors;
@@ -10,13 +9,12 @@ class FormError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children:
-        List.generate(
-            errors.length,
-            (index) => formErrorText(error: errors[index]!)),
-        );
+      children: List.generate(
+          errors.length, (index) => formErrorText(error: errors[index]!)),
+    );
   }
-  Row formErrorText({required String error}){
+
+  Row formErrorText({required String error}) {
     return Row(
       children: [
         SvgPicture.asset(

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/presentation/bloc/search/search_bloc.dart';
-import 'package:store/presentation/bloc/search/search_event.dart';
+import 'package:sun_bright/constants/colors.dart';
+
+import '../../../../Utilities/size_config.dart';
+import '../../../bloc/search/search_bloc.dart';
+import '../../../bloc/search/search_event.dart';
 
 class SearchAppBar extends StatelessWidget {
-  const SearchAppBar({Key? key, required this.queryTextController}) : super(key: key);
+  const SearchAppBar({Key? key, required this.queryTextController})
+      : super(key: key);
   final TextEditingController queryTextController;
   @override
   Widget build(BuildContext context) {
@@ -26,33 +28,27 @@ class SearchAppBar extends StatelessWidget {
       decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
               horizontal: SizeConfig.getProportionateScreenWidth(40),
-              vertical: SizeConfig.getProportionateScreenWidth(20)
-          ),
+              vertical: SizeConfig.getProportionateScreenWidth(20)),
           border: OutlineInputBorder(
-              borderSide: const BorderSide(
-                  color: Colors.black45,
-                  width: 2
-              ),
-              borderRadius: BorderRadius.circular(40)
-          ),
+              borderSide: const BorderSide(color: Colors.black45, width: 2),
+              borderRadius: BorderRadius.circular(40)),
           focusedBorder: OutlineInputBorder(
               borderSide: const BorderSide(
                 color: primaryColor,
                 width: 2,
               ),
-              borderRadius: BorderRadius.circular(40)
-          ),
+              borderRadius: BorderRadius.circular(40)),
           suffixIcon: queryTextController.text.isEmpty
-              ?  null
+              ? null
               : Padding(
-            padding: const EdgeInsets.only(right: 25.0),
-            child: InkWell(child: const Icon(Icons.close),
-              onTap: () {
-                queryTextController.clear();
-              },
-
-            ),
-          ),
+                  padding: const EdgeInsets.only(right: 25.0),
+                  child: InkWell(
+                    child: const Icon(Icons.close),
+                    onTap: () {
+                      queryTextController.clear();
+                    },
+                  ),
+                ),
           // enabledBorder: InputBorder.none,
           hintText: "Search",
           focusColor: Colors.black,
@@ -66,12 +62,11 @@ class SearchAppBar extends StatelessWidget {
             maxWidth: 45,
             maxHeight: 45,
           ),
-          prefixText:"  "
-      ),
-    onChanged: (value){
-      bloc.add(FetchDataEvent(queryString: value));
-    },
-      onSubmitted: (value){
+          prefixText: "  "),
+      onChanged: (value) {
+        bloc.add(FetchDataEvent(queryString: value));
+      },
+      onSubmitted: (value) {
         bloc.add(FetchDataEvent(queryString: value));
       },
     );

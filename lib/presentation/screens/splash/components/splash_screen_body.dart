@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/constants/text_style.dart';
-import 'package:store/presentation/screens/sign_in/sign_in_screen.dart';
-import 'package:store/presentation/widgets/custom_button.dart';
-import 'package:store/presentation/widgets/custom_page_transition.dart';
+import 'package:sun_bright/constants/colors.dart';
+import 'package:sun_bright/presentation/screens/sign_in/sign_in_screen.dart';
+
+import '../../../../constants/text_style.dart';
+import '../../../widgets/custom_button.dart';
+import '../../../widgets/custom_page_transition.dart';
 
 class SplashScreenBody extends StatefulWidget {
   const SplashScreenBody({Key? key}) : super(key: key);

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:store/Utilities/size_config.dart';
-
+import 'package:sun_bright/Utilities/size_config.dart';
 
 class CustomPrefixIcon extends StatelessWidget {
   final String svgIconPath;
-  const CustomPrefixIcon({Key? key, required this.svgIconPath}) : super(key: key);
+  const CustomPrefixIcon({Key? key, required this.svgIconPath})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

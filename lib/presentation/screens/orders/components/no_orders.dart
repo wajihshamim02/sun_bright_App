@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store/presentation/widgets/default_button.dart';
+
+import '../../../widgets/default_button.dart';
 
 class NoOrder extends StatelessWidget {
   const NoOrder({Key? key}) : super(key: key);
@@ -8,14 +9,18 @@ class NoOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 50,),
+        const SizedBox(
+          height: 50,
+        ),
         SizedBox(
           child: Image.asset(
             "assets/images/no_order.png",
             fit: BoxFit.contain,
           ),
         ),
-        const SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
         const Text(
           "No history yet",
           textAlign: TextAlign.center,
@@ -26,7 +31,9 @@ class NoOrder extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
         const Opacity(
           opacity: 0.57,
           child: Padding(
@@ -44,7 +51,7 @@ class NoOrder extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: DefaultButton(
-            onPressed: (){},
+            onPressed: () {},
             backgroundColor: const Color(0xff57bfe9),
             forgroundColor: Colors.white,
             text: "Start ordering",

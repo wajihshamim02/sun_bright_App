@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store/presentation/widgets/horizontal_timer.dart';
 
+import '../../../widgets/horizontal_timer.dart';
 import 'otp_form.dart';
 
 class OTPBody extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store/presentation/widgets/custom_header.dart';
-import 'package:store/presentation/widgets/social_media_box.dart';
+import 'package:sun_bright/presentation/widgets/social_media_box.dart';
 
+import '../../../widgets/custom_header.dart';
 import 'sign_up_form.dart';
 
 class SignUpBody extends StatelessWidget {

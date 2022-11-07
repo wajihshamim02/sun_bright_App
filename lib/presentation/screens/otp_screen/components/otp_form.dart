@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/constants/form_field_styles.dart';
-import 'package:store/presentation/widgets/custom_button.dart';
-import 'package:store/presentation/screens/home/home_screen.dart';
+import 'package:sun_bright/presentation/screens/home/home_screen.dart';
+
+import '../../../../constants/colors.dart';
+import '../../../../constants/form_field_styles.dart';
+import '../../../widgets/custom_button.dart';
 
 class OTPForm extends StatefulWidget {
   const OTPForm({Key? key}) : super(key: key);

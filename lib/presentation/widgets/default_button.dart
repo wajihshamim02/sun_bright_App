@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/constants/colors.dart';
+import 'package:sun_bright/Utilities/size_config.dart';
+import 'package:sun_bright/constants/colors.dart';
 
 class DefaultButton extends StatelessWidget {
   final String? text;

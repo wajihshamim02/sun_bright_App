@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:store/Utilities/size_config.dart';
-import 'package:store/data/models/product.dart';
+import 'package:sun_bright/data/models/product.dart';
+
+import '../../../../Utilities/size_config.dart';
 import 'custom_back_button.dart';
 
 class CustomAppBar extends StatefulWidget {
   final int productId;
   late bool isProductFavourite;
-   CustomAppBar({
+  CustomAppBar({
     Key? key,
-    required this.isProductFavourite, required this.productId,
+    required this.isProductFavourite,
+    required this.productId,
   }) : super(key: key);
 
   @override
@@ -26,38 +28,39 @@ class _CustomAppBarState extends State<CustomAppBar> {
           SizedBox(
             height: SizeConfig.getProportionateScreenWidth(15),
           ),
-             Row(
-              children: [
-                const CustomBackButton(),
-                const Spacer(),
-                favoriteContainer(),
-              ],
-            ),
+          Row(
+            children: [
+              const CustomBackButton(),
+              const Spacer(),
+              favoriteContainer(),
+            ],
+          ),
         ],
       ),
     );
   }
 
-  Widget favoriteContainer(){
+  Widget favoriteContainer() {
     return Container(
       padding: EdgeInsets.all(SizeConfig.getProportionateScreenWidth(15)),
       width: SizeConfig.getProportionateScreenWidth(64),
       decoration: BoxDecoration(
-          color: widget.isProductFavourite ? const Color(0xFFFFE6E6) : Colors.black12,
+          color: widget.isProductFavourite
+              ? const Color(0xFFFFE6E6)
+              : Colors.black12,
           borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              bottomLeft: Radius.circular(20)
-          )
-      ),
+              topLeft: Radius.circular(20), bottomLeft: Radius.circular(20))),
       child: InkWell(
-        onTap: (){
+        onTap: () {
           demoProducts
               .where((product) => (product.id == widget.productId))
-              .first.isFavourite = !widget.isProductFavourite;
+              .first
+              .isFavourite = !widget.isProductFavourite;
           setState(() {
             widget.isProductFavourite = demoProducts
                 .where((product) => (product.id == widget.productId))
-                .first.isFavourite;
+                .first
+                .isFavourite;
           });
         },
         child: Icon(
@@ -69,9 +72,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
       ),
     );
   }
+
   @override
   void dispose() {
     super.dispose();
   }
 }
-

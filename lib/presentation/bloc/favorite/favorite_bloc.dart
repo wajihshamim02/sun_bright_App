@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:store/data/models/product.dart';
+import 'package:sun_bright/data/models/product.dart';
+
 import 'favorite_event.dart';
 import 'favorite_state.dart';
 

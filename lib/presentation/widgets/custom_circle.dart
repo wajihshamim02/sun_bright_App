@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store/constants/colors.dart';
+import 'package:sun_bright/constants/colors.dart';
 
 class CustomCircle extends StatelessWidget {
   final double width, height;

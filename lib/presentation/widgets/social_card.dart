@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:store/constants/colors.dart';
+import 'package:sun_bright/constants/colors.dart';
 
 class SocialCard extends StatelessWidget {
   final String svgIconPath;

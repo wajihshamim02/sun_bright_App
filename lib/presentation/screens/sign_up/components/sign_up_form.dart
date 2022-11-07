@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:store/constants/colors.dart';
-import 'package:store/constants/form_messages.dart';
-import 'package:store/presentation/screens/complete_profile/complete_profile.dart';
-import 'package:store/presentation/widgets/custom_button.dart';
+import 'package:sun_bright/constants/form_messages.dart';
+
+import '../../../../constants/colors.dart';
+import '../../../widgets/custom_button.dart';
+import '../../complete_profile/complete_profile.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
