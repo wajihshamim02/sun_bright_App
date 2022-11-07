@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:store/presentation/screens/home/home_screen.dart';
-import 'package:store/presentation/widgets/default_button.dart';
+
+import '../../../widgets/default_button.dart';
+import '../../home/home_screen.dart';
 
 class NoItemsFound extends StatelessWidget {
   const NoItemsFound({Key? key}) : super(key: key);
@@ -13,23 +13,24 @@ class NoItemsFound extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("No items found",
+            const Text(
+              "No items found",
               style: TextStyle(
                 fontSize: 20,
-
               ),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             DefaultButton(
-              onPressed: () => Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false),
+              onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                  context, HomeScreen.routeName, (route) => false),
               backgroundColor: const Color(0xff57bfe9),
               forgroundColor: Colors.white,
               text: "Start shopping",
               // width: 250,
             )
           ],
-
-        )
-    );
+        ));
   }
 }
