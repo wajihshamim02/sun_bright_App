@@ -32,7 +32,7 @@ class ProfileMenu extends StatelessWidget {
                   child: Icon(
                     icon2,
                     color: Colors.black,
-                    size: 30,
+                    size: 28,
                   ),
                 ),
                 SizedBox(
