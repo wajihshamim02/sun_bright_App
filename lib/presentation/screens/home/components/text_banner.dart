@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants/text_style.dart';
 
-
 class TextBanner extends StatelessWidget {
   const TextBanner({super.key});
 
@@ -14,8 +13,7 @@ class TextBanner extends StatelessWidget {
         top: MediaQuery.of(context).size.height * 0.04,
         bottom: MediaQuery.of(context).size.height * 0.04,
       ),
-      child:
-          const Text("Order online\ncollect in store", style: kBannerTextStyle),
+      child: const Text("Sab rang\nsunbright k sang", style: kBannerTextStyle),
     );
   }
 }

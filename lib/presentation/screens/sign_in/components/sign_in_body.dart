@@ -7,12 +7,11 @@ class SignInBody extends StatelessWidget {
   const SignInBody({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: SingleChildScrollView(
+    return SingleChildScrollView(
       reverse: true,
       child: Column(
         children: const [WelcomeBack(), SignInForm()],
       ),
-    ));
+    );
   }
 }
