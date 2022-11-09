@@ -10,14 +10,14 @@ class SignUpBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
         child: Column(
           children: [
-            const CustomHeader(
-              title: "Create an account",
-              subTitle:
-                  "Please enter your details or sign up\n with your social media account",
+             CustomHeader(
+              title: "Create Account",
+              
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,

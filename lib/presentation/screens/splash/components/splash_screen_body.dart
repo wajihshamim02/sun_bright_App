@@ -22,49 +22,20 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
       CurvedAnimation(parent: _controller, curve: Curves.ease);
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        // To take all screen's height
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(gradient: primaryGradientColor),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Flexible(
-              flex: 2,
-              child: Text("Find Your\nGadget", style: splashHeadingTextStyle),
-            ),
-            Flexible(
-              flex: 5,
-              child: FadeTransition(
-                opacity: _animation,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height *
-                          0.5, // 50 percent of screen's height
-                      child: Image.asset("assets/images/splash.png"),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.08,
-                      decoration: const BoxDecoration(color: primaryColor),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            CustomButton(
-              backgroundColor: Colors.white,
-              forgroundColor: primaryColor,
-              onPressed: () => Navigator.push(
-                  context,
-                  CustomScaleTransition(
-                      nextPageUrl: SignInScreen.routeName,
-                      nextPage: const SignInScreen())),
-              title: "Get Started",
-            ),
-            const SizedBox(
-              height: 10,
+            Container(
+              height: 250,
+              decoration: BoxDecoration(
+                  color: Colors.black,
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/sunbright.jpg'),
+                    fit: BoxFit.cover,
+                  )),
             )
           ],
         ),

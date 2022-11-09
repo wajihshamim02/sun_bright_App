@@ -15,10 +15,9 @@ class ForgotPasswordBody extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              const CustomHeader(
+               CustomHeader(
                 title: "Forgot Password?",
-                subTitle:
-                    "Please enter your email and we will send\n you a link to reset your password",
+               
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
