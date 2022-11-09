@@ -61,25 +61,9 @@ class _SignInFormState extends State<SignInForm> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: InkWell(
-                    onTap: () => Navigator.push(
-                        context,
-                        CustomScaleTransition(
-                            nextPageUrl: ForgotPasswordScreen.routeName,
-                            nextPage: const ForgotPasswordScreen())),
-                    child: const Text(
-                      "Forgot Password?",
-                      style: TextStyle(
-                          color: primaryColor,
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
+              
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 CustomButton(
                   title: "Login",
@@ -109,8 +93,32 @@ class _SignInFormState extends State<SignInForm> {
                     // }
                   },
                 ),
-                SizedBox(
+                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                 Align(
+                  alignment: Alignment.center,
+                  child: InkWell(
+                    onTap: () => Navigator.push(
+                        context,
+                        CustomScaleTransition(
+                            nextPageUrl: ForgotPasswordScreen.routeName,
+                            nextPage: const ForgotPasswordScreen())),
+                    child: const Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                          color: primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize:18),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+                Text('Dont have an account?',style: TextStyle(fontSize: 18),),
+                 SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
                 ),
                 InkWell(
                   onTap: () => Navigator.push(
@@ -118,10 +126,12 @@ class _SignInFormState extends State<SignInForm> {
                       CustomScaleTransition(
                           nextPageUrl: SignUpScreen.routeName,
                           nextPage: const SignUpScreen())),
+                          
                   child: const Text(
-                    "Create an account?",
+                    "Create Account",
                     style: TextStyle(
-                        color: primaryColor, fontWeight: FontWeight.bold),
+                        color: primaryColor, fontWeight: FontWeight.bold, 
+                        fontSize:18),
                   ),
                 ),
               ],

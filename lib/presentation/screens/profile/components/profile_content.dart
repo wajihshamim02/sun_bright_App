@@ -21,22 +21,23 @@ class ProfileContent extends StatelessWidget {
               text: "My Account",
               icon: const Icon(
                 Icons.supervised_user_circle,
+                
               ),
-              onPressed: () {}),
+              onPressed: () {}, icon2: Icons.person,),
           ProfileMenu(
-            text: "Notifications",
-            icon: const Icon(Icons.supervised_user_circle),
-            onPressed: () {},
+            text: "Notification",
+            icon: const Icon(Icons.notification_add_outlined,color: Color.fromARGB(255, 253, 0, 0),),
+            onPressed: () {}, icon2: Icons.notifications,
           ),
           ProfileMenu(
             text: "Settings",
             icon: const Icon(Icons.supervised_user_circle),
-            onPressed: () {},
+            onPressed: () {}, icon2: Icons.settings,
           ),
           ProfileMenu(
             text: "Help Center",
             icon: const Icon(Icons.supervised_user_circle),
-            onPressed: () {},
+            onPressed: () {}, icon2: Icons.help,
           ),
           ProfileMenu(
             text: "Log Out",
@@ -48,7 +49,7 @@ class ProfileContent extends StatelessWidget {
                 (Route<dynamic> route) => false,
               );
               // Navigator.pushReplacementNamed(context, SignInScreen.routeName);
-            },
+            }, icon2: Icons.logout,
           ),
         ],
       ),

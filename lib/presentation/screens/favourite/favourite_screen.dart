@@ -31,7 +31,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: CustomAppBar(
-        title: "Favorites",
+        title: "Favorites", 
       ),
       body: SafeArea(
         child: BlocBuilder(

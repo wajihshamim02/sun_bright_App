@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomHeader extends StatelessWidget {
-  final String title, subTitle;
-  const CustomHeader({Key? key, required this.title, required this.subTitle})
+  final String title ;
+  CustomHeader({Key? key, required this.title, })
       : super(key: key);
 
   @override
@@ -18,12 +18,11 @@ class CustomHeader extends StatelessWidget {
               fontSize: MediaQuery.of(context).size.width * 0.08,
               fontWeight: FontWeight.bold,
               color: Colors.black,
-              letterSpacing: 2),
+              ),
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.01,
         ),
-        Text(subTitle, textAlign: TextAlign.center),
       ],
     );
   }

@@ -69,7 +69,8 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
           suffixIcon: Icon(Icons.email)),
       validator: (newEmail) {
         if (newEmail!.isEmpty) {
-          return kEmailNullError;
+          // TextFormField kEmailNullError = TextFormField();
+          // return kEmailNullError;
         } else if (!emailValidatorRegExp.hasMatch(newEmail)) {
           return kInvalidEmailError;
         }

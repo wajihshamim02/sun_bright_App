@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sun_bright/constants/form_messages.dart';
+import 'package:sun_bright/presentation/screens/sign_in/sign_in_screen.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../widgets/custom_button.dart';
+import '../../../widgets/custom_page_transition.dart';
 import '../../complete_profile/complete_profile.dart';
+import '../sign_up_screen.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -37,23 +40,25 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            emailFormField(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            passwordFormField(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
-            confirmPasswordFormField(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
+            Container(
+              width: double.infinity,
+              height: 80,
+              child: emailFormField()),
+          
+            Container(
+              width: double.infinity,
+              height: 80,
+              child: passwordFormField()),
+          
+            Container(
+               width: double.infinity,
+              height: 80,
+              child: confirmPasswordFormField()),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             CustomButton(
-              title: "Continue",
+              title: "Create Account",
               backgroundColor: primaryColor,
               forgroundColor: Colors.white,
               width: MediaQuery.of(context).size.width * 0.85,
@@ -66,6 +71,27 @@ class _SignUpFormState extends State<SignUpForm> {
                 }
               },
             ),
+              SizedBox(
+              height: MediaQuery.of(context).size.height * 0.16,
+            ),  
+           Text('Already have an account?',style: TextStyle(fontSize: 18),),
+                 SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      CustomScaleTransition(
+                          nextPageUrl: SignInScreen.routeName,
+                          nextPage: const SignInScreen())),
+                          
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(
+                        color: primaryColor, fontWeight: FontWeight.bold, 
+                        fontSize:18),
+                  ),
+                ),
           ],
         ),
       ),
@@ -143,7 +169,7 @@ class _SignUpFormState extends State<SignUpForm> {
       keyboardType: TextInputType.visiblePassword,
       obscureText: false,
       decoration: const InputDecoration(
-          labelText: "Confrim Password",
+          labelText: "Confirm Password",
           hintText: "Re-Enter your password",
           suffixIcon: Icon(Icons.lock)),
       validator: (newPassword) {
@@ -154,6 +180,7 @@ class _SignUpFormState extends State<SignUpForm> {
         }
         return null;
       },
+    
     );
   }
 

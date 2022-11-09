@@ -20,10 +20,12 @@ class OTPBody extends StatelessWidget {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: MediaQuery.of(context).size.width * 0.07,
-                  color: Colors.black,
-                  letterSpacing: 2),
+                  color: Colors.black,),
             ),
-            const Text("We sent your code to +963 999 *** ***"),
+              SizedBox(
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
+            const Text("We sent your code to +963 999 *** ***",style: TextStyle(fontSize: 15),),
             const HorizontalTimer(),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.15,

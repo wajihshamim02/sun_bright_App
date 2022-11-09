@@ -8,7 +8,8 @@ class SignInBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      reverse: true,
+      physics: NeverScrollableScrollPhysics(),
+      // reverse: true,
       child: Column(
         children: const [WelcomeBack(), SignInForm()],
       ),

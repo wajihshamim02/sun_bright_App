@@ -22,10 +22,10 @@ class ProfilePicture extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: 25,
+                  height: 35,
                 ),
                 const Text(
-                  "Joe Doe",
+                  "Muhammad Wajih Shamim",
                   style: TextStyle(
                       color: Colors.black, fontSize: 15, fontFamily: "Serif"),
                 ),
@@ -60,11 +60,11 @@ class ProfilePicture extends StatelessWidget {
           const Align(
             alignment: Alignment.topCenter,
             child: SizedBox(
-              height: 56,
-              width: 56,
+              height: 60,
+              width: 60,
               child: CircleAvatar(
                 backgroundImage: AssetImage(
-                  "assets/images/fashion.jpg",
+                  "assets/images/wahaj.jpeg",
                 ),
               ),
             ),
