@@ -75,19 +75,19 @@ class Product {
 List<Product> demoProducts = [
   Product(
     id: 1,
-    image: "assets/images/p1.png",
+    image: "assets/images/paint_1.png",
     images: [
       "assets/images/p1_2.jpg",
       "assets/images/p1_3.jpg",
       "assets/images/p1_4.jpg",
     ],
-    category: "Clock , Wearable",
+    category: "Interior",
     colors: [
       {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
       {"colorName": "Purple", "color": const Color(0xFF836DB8)},
       {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
     ],
-    title: "Apple Watch",
+    title: "Royal Matt Emulsion",
     price: 64.99,
     description: {
       "headline": "Get Apple TV+ free for a year",
@@ -99,19 +99,19 @@ List<Product> demoProducts = [
   ),
   Product(
     id: 2,
-    image: "assets/images/p2.png",
+    image: "assets/images/paint_2.jpeg",
     images: [
       "assets/images/p2_1.png",
       "assets/images/p2_2.jpg",
     ],
-    category: "Fashion",
+    category: "Interior",
     colors: [
       {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
       {"colorName": "Purple", "color": const Color(0xFF836DB8)},
       {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
       {"colorName": "Red", "color": const Color(0xE7FF0D29)}
     ],
-    title: "Apple Watch",
+    title: "Royal Pearl Emulsion",
     price: 50.5,
     description: {
       "headline": "Get Apple TV+ free for a year",
@@ -122,18 +122,18 @@ List<Product> demoProducts = [
   ),
   Product(
     id: 3,
-    image: "assets/images/p3.png",
+    image: "assets/images/paint_3.png",
     images: [
       "assets/images/p3_1.png",
     ],
-    category: "Shoes",
+    category: "Interior",
     colors: [
       {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
       {"colorName": "Purple", "color": const Color(0xFF836DB8)},
       {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
       {"colorName": "Red", "color": const Color(0xE7FF0D29)}
     ],
-    title: "Nike Shoes",
+    title: "Luxary Plastic Emulsion",
     price: 20.20,
     description: {
       "headline": "Get Nike shoes with another one as a gift",
@@ -144,20 +144,20 @@ List<Product> demoProducts = [
   ),
   Product(
     id: 4,
-    image: "assets/images/p4.png",
+    image: "assets/images/paint_4.png",
     images: [
       "assets/images/p4.png",
       "assets/images/p4.png",
       "assets/images/p4.png",
     ],
-    category: "Clocks",
+    category: "Interior",
     colors: [
       {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
       {"colorName": "Purple", "color": const Color(0xFF836DB8)},
       {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
       {"colorName": "Red", "color": const Color(0xE7FF0D29)}
     ],
-    title: "Apple Watch",
+    title: "Super Emulsion",
     price: 20.20,
     description: {
       "headline": "Get Apple TV+ free for a year",
@@ -168,12 +168,12 @@ List<Product> demoProducts = [
   ),
   Product(
     id: 5,
-    image: "assets/images/p5_1.png",
+    image: "assets/images/paint_5.png",
     images: [
       "assets/images/p5_1.png",
       "assets/images/p5_1.png",
     ],
-    category: "Computers",
+    category: "Interior",
     colors: [
       {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
       {"colorName": "Purple", "color": const Color(0xFF836DB8)},
@@ -181,7 +181,7 @@ List<Product> demoProducts = [
       {"colorName": "Red", "color": const Color(0xE7FF0D29)},
       {"colorName": "Yellow", "color": const Color(0xE7FFD70D)}
     ],
-    title: "Apple Laptop",
+    title: "Texture Finish",
     price: 36.55,
     description: {
       "headline": "Get Apple TV+ free for a year",

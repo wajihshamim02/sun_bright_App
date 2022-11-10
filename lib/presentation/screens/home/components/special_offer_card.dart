@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../Utilities/size_config.dart';
 import '../../../../constants/colors.dart';
 
-
 class SpecialOfferCard extends StatelessWidget {
   final String? category, image, title;
   final double price;
@@ -11,7 +10,7 @@ class SpecialOfferCard extends StatelessWidget {
 
   const SpecialOfferCard(
       {Key? key,
-       this.category,
+      this.category,
       required this.image,
       required this.onTap,
       required this.title,
@@ -49,8 +48,9 @@ class SpecialOfferCard extends StatelessWidget {
                         SizedBox(
                           height: SizeConfig.getProportionateScreenHeight(150),
                         ),
-                         Text(
+                        Text(
                           title!,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 22,
@@ -61,27 +61,27 @@ class SpecialOfferCard extends StatelessWidget {
                         const SizedBox(
                           height: 4,
                         ),
-                         if(category != null)
-                           Text(
-                           category!,
-                           style: const TextStyle(
-                             color:  Color(0xff858585),
-                             fontSize: 16,
-                             fontFamily: "Raleway",
-                           ),
-                         ),
+                        if (category != null)
+                          Text(
+                            category!,
+                            style: const TextStyle(
+                              color: Color(0xff858585),
+                              fontSize: 16,
+                              fontFamily: "Raleway",
+                            ),
+                          ),
                         const SizedBox(
                           height: 15,
                         ),
-                        Text(
-                          "\$$price",
-                          style: const TextStyle(
-                            color: Color(0xff5956e9),
-                            fontSize: 17,
-                            fontFamily: "Raleway",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
+                        // Text(
+                        //   "\$$price",
+                        //   style: const TextStyle(
+                        //     color: Color(0xff5956e9),
+                        //     fontSize: 17,
+                        //     fontFamily: "Raleway",
+                        //     fontWeight: FontWeight.w700,
+                        //   ),
+                        // ),
                       ],
                     )),
               ),
