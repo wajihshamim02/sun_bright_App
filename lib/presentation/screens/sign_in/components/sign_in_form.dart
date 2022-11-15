@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sun_bright/constants/colors.dart';
 import 'package:sun_bright/presentation/screens/sign_up/sign_up_screen.dart';
+import 'package:sun_bright/presentation/widgets/custom_bottom_navbar.dart';
 
 import '../../../../Utilities/keyboard_util.dart';
 import '../../../../Utilities/sqfilte_helper.dart';
@@ -61,7 +62,6 @@ class _SignInFormState extends State<SignInForm> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-              
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
@@ -80,9 +80,10 @@ class _SignInFormState extends State<SignInForm> {
                     //     KeyboardUtil.hideKeyboard(context);
                     Navigator.push(
                         context,
-                        CustomScaleTransition(
-                            nextPageUrl: HomeScreen.routeName,
-                            nextPage: const HomeScreen()));
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                // nextPageUrl: HomeScreen.routeName,
+                                BottomNavBar()));
                     // } else {
                     //   ScaffoldMessenger.of(context)
                     //       .showSnackBar(const SnackBar(
@@ -96,7 +97,7 @@ class _SignInFormState extends State<SignInForm> {
                  SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                 Align(
+                Align(
                   alignment: Alignment.center,
                   child: InkWell(
                     onTap: () => Navigator.push(
@@ -109,15 +110,18 @@ class _SignInFormState extends State<SignInForm> {
                       style: TextStyle(
                           color: primaryColor,
                           fontWeight: FontWeight.bold,
-                          fontSize:18),
+                          fontSize: 18),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1,
                 ),
-                Text('Dont have an account?',style: TextStyle(fontSize: 18),),
-                 SizedBox(
+                Text(
+                  'Dont have an account?',
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
                 InkWell(
@@ -130,8 +134,9 @@ class _SignInFormState extends State<SignInForm> {
                   child: const Text(
                     "Create Account",
                     style: TextStyle(
-                        color: primaryColor, fontWeight: FontWeight.bold, 
-                        fontSize:18),
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
                   ),
                 ),
               ],

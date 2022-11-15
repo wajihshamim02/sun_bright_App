@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sun_bright/presentation/bloc/favorite/favorite_bloc.dart';
 import 'package:sun_bright/presentation/bloc/order/order_bloc.dart';
+import 'package:sun_bright/presentation/screens/order_status/components/status_checkpoint.dart';
 import 'package:sun_bright/presentation/screens/otp_screen/otp_screen.dart';
 import 'package:sun_bright/presentation/screens/sign_in/sign_in_screen.dart';
 import 'package:sun_bright/presentation/screens/splash/splash_screen.dart';

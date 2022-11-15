@@ -6,7 +6,7 @@ class Product {
   late final Map<String, String> description;
   late final String image;
   late final List<String> images;
-  late final List<Map<String, dynamic>> colors;
+  // late final List<Map<String, dynamic>> colors;
   late final double rating;
   late final double price;
   late final String category;
@@ -18,7 +18,7 @@ class Product {
     required this.title,
     required this.description,
     required this.images,
-    required this.colors,
+    // required this.colors,
     this.rating = 0.0,
     this.isFavourite = false,
     this.isPopular = false,
@@ -35,7 +35,7 @@ class Product {
       'image': image,
       'images': images,
       'category': category,
-      'colors': colors,
+      // 'colors': colors,
       'rating': rating,
       'price': price,
       'isFavourite': isFavourite,
@@ -50,7 +50,7 @@ class Product {
     image = map['image'];
     category = map['category'];
     images = map['images'];
-    colors = map['colors'];
+    // colors = map['colors'];
     rating = map['rating'];
     price = map['price'];
     isFavourite = map['isFavourite'];
@@ -63,7 +63,7 @@ class Product {
         image: image,
         images: images,
         category: category,
-        colors: colors,
+        // colors: colors,
         rating: rating,
         price: price,
         isFavourite: isFavourite,
@@ -77,20 +77,20 @@ List<Product> demoProducts = [
     id: 1,
     image: "assets/images/paint_1.png",
     images: [
-      "assets/images/p1_2.jpg",
-      "assets/images/p1_3.jpg",
-      "assets/images/p1_4.jpg",
+      "assets/images/PastelPeach_room_1.png",
+      "assets/images/Pastel_Peach_1.png",
+      "assets/images/Pastel_Peach_2.jfif",
     ],
     category: "Interior",
-    colors: [
-      {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
-      {"colorName": "Purple", "color": const Color(0xFF836DB8)},
-      {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
-    ],
+    // colors: [
+    //   {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
+    //   {"colorName": "Purple", "color": const Color(0xFF836DB8)},
+    //   {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
+    // ],
     title: "Royal Matt Emulsion",
     price: 64.99,
     description: {
-      "headline": "Get Apple TV+ free for a year",
+      "headline": "Intensify your wall with Royal Matt Emulsion",
       "description": description
     },
     rating: 4.8,
@@ -101,20 +101,20 @@ List<Product> demoProducts = [
     id: 2,
     image: "assets/images/paint_2.jpeg",
     images: [
-      "assets/images/p2_1.png",
-      "assets/images/p2_2.jpg",
+      "assets/images/PastelPeach_room_1.png",
+      "assets/images/Pastel_Peach_1.png",
     ],
     category: "Interior",
-    colors: [
-      {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
-      {"colorName": "Purple", "color": const Color(0xFF836DB8)},
-      {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
-      {"colorName": "Red", "color": const Color(0xE7FF0D29)}
-    ],
+    // colors: [
+    //   {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
+    //   {"colorName": "Purple", "color": const Color(0xFF836DB8)},
+    //   {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
+    //   {"colorName": "Red", "color": const Color(0xE7FF0D29)}
+    // ],
     title: "Royal Pearl Emulsion",
     price: 50.5,
     description: {
-      "headline": "Get Apple TV+ free for a year",
+      "headline": "Intensify your wall with Royal Pearl Emulsion",
       "description": description
     },
     rating: 4.1,
@@ -122,21 +122,21 @@ List<Product> demoProducts = [
   ),
   Product(
     id: 3,
-    image: "assets/images/paint_3.png",
+    image: "assets/images/paint_4.png",
     images: [
-      "assets/images/p3_1.png",
+      "assets/images/PastelPeach_room_1.png",
     ],
     category: "Interior",
-    colors: [
-      {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
-      {"colorName": "Purple", "color": const Color(0xFF836DB8)},
-      {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
-      {"colorName": "Red", "color": const Color(0xE7FF0D29)}
-    ],
+    // colors: [
+    //   {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
+    //   {"colorName": "Purple", "color": const Color(0xFF836DB8)},
+    //   {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
+    //   {"colorName": "Red", "color": const Color(0xE7FF0D29)}
+    // ],
     title: "Luxary Plastic Emulsion",
     price: 20.20,
     description: {
-      "headline": "Get Nike shoes with another one as a gift",
+      "headline": "Intensify your wall with Luxary Plastic Emulsion",
       "description": description
     },
     rating: 4.1,
@@ -146,21 +146,21 @@ List<Product> demoProducts = [
     id: 4,
     image: "assets/images/paint_4.png",
     images: [
-      "assets/images/p4.png",
-      "assets/images/p4.png",
-      "assets/images/p4.png",
+      "assets/images/PastelPeach_room_1.png",
+      "assets/images/Pastel_Peach_1.png",
+      "assets/images/Pastel_Peach_2.jfif",
     ],
     category: "Interior",
-    colors: [
-      {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
-      {"colorName": "Purple", "color": const Color(0xFF836DB8)},
-      {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
-      {"colorName": "Red", "color": Color.fromARGB(231, 255, 21, 13)}
-    ],
+    // colors: [
+    //   {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
+    //   {"colorName": "Purple", "color": const Color(0xFF836DB8)},
+    //   {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
+    //   {"colorName": "Red", "color": const Color(0xE7FF0D29)}
+    // ],
     title: "Super Emulsion",
     price: 20.20,
     description: {
-      "headline": "Get Apple TV+ free for a year",
+      "headline": "Intensify your wall with Super Emulsion",
       "description": description
     },
     rating: 4.1,
@@ -170,21 +170,22 @@ List<Product> demoProducts = [
     id: 5,
     image: "assets/images/paint_5.png",
     images: [
-      "assets/images/p5_1.png",
-      "assets/images/p5_1.png",
+      "assets/images/PastelPeach_room_1.png",
+      "assets/images/Pastel_Peach_1.png",
+      "assets/images/Pastel_Peach_2.jfif",
     ],
     category: "Interior",
-    colors: [
-      {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
-      {"colorName": "Purple", "color": const Color(0xFF836DB8)},
-      {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
-      {"colorName": "Red", "color": const Color(0xE7FF0D29)},
-      {"colorName": "Yellow", "color": const Color(0xE7FFD70D)}
-    ],
+    // colors: [
+    //   {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
+    //   {"colorName": "Purple", "color": const Color(0xFF836DB8)},
+    //   {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
+    //   {"colorName": "Red", "color": const Color(0xE7FF0D29)},
+    //   {"colorName": "Yellow", "color": const Color(0xE7FFD70D)}
+    // ],
     title: "Texture Finish",
     price: 36.55,
     description: {
-      "headline": "Get Apple TV+ free for a year",
+      "headline": "Intensify your wall with Texture Finish",
       "description": description
     },
     rating: 4.4,
@@ -194,4 +195,4 @@ List<Product> demoProducts = [
 ];
 
 const String description =
-    "Available when you purchase any new iPhone, iPad, iPod Touch, Mac or Apple TV, £4.99/month after free trial …";
+    "Due to its high performance, it can be used on concrete substrates where abrasion resistance and concrete adhesion are essential …";

@@ -32,7 +32,7 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
           ? IconButton(
               icon: const Icon(
                 Icons.arrow_back_ios,
-                color: Color.fromARGB(221, 0, 0, 0),
+                color: Colors.black87,
               ),
               onPressed: () {
                 setState(() {

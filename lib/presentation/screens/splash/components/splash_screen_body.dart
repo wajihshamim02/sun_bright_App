@@ -24,19 +24,21 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-            height: 250,
-            decoration: BoxDecoration(
-                color: Colors.black,
-                image: DecorationImage(
-                  image: AssetImage('assets/images/sunbright.jpg'),
-                  fit: BoxFit.cover,
-                )),
-          )
-        ],
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              height: 250,
+              decoration: BoxDecoration(
+                  color: Colors.black,
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/sunbright.jpg'),
+                    fit: BoxFit.cover,
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }
