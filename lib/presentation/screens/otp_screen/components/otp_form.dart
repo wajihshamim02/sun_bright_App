@@ -78,8 +78,7 @@ class _OTPFormState extends State<OTPForm> {
               style: TextStyle(
                   decoration: TextDecoration.underline,
                   color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w200),
+                  fontSize: 16,),
             ),
             onPressed: () {},
           )

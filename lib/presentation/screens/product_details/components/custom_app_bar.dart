@@ -10,8 +10,7 @@ class CustomAppBar extends StatefulWidget {
   CustomAppBar({
     Key? key,
     required this.isProductFavourite,
-    required this.productId,
-    required String title,
+    required this.productId, required String title,
   }) : super(key: key);
 
   @override

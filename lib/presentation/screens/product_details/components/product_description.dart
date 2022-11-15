@@ -33,7 +33,7 @@ class ProductDescription extends StatelessWidget {
           ),
 
           // Product Colors
-          ProductColorList(productColors: product.colors),
+          // ProductColorList(productColors: product.colors),
 
           // Product Description
           Container(

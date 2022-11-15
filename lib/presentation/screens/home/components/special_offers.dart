@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sun_bright/presentation/bloc/search/search_state.dart';
-
+import 'package:sun_bright/presentation/screens/color_pallete_grid/color_pallete_grid.dart';
 
 import '../../../../Utilities/size_config.dart';
 import '../../../../constants/text_style.dart';
@@ -42,51 +42,57 @@ class SpecialOffers extends StatelessWidget {
                             child: Text("There are no elements"),
                           ),
                         )
-                      : Column(
-                          children: [
-                            SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: List.generate(
-                                    state.products.length,
-                                    (index) => Padding(
-                                      padding: const EdgeInsets.only(right: 20),
-                                      child: SpecialOfferCard(
-                                          category:
-                                              state.products[index].category,
-                                          image: state.products[index].image,
-                                          price: state.products[index].price,
-                                          title: state.products[index].title,
-                                          onTap: () => Navigator.pushNamed(
-                                              context,
-                                              ProductDetailsScreen.routeName,
-                                              arguments:
-                                                  state.products[index])),
+                      : Container(
+                          color: Colors.white,
+                          child: Column(
+                            children: [
+                              SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: List.generate(
+                                      state.products.length,
+                                      (index) => Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 20),
+                                        child: SpecialOfferCard(
+                                            category:
+                                                state.products[index].category,
+                                            image: state.products[index].image,
+                                            price: state.products[index].price,
+                                            title: state.products[index].title,
+                                            onTap: (() {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Interior_ColorPalleteGrid()));
+                                            })),
+                                      ),
                                     ),
+                                  )),
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                color: Colors.transparent,
+                                child: GestureDetector(
+                                  onTap: () {},
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      const Text("See more", style: textStyle),
+                                      SizedBox(
+                                        width: SizeConfig
+                                            .getProportionateScreenHeight(5),
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_forward_outlined,
+                                        color: Color(0xff5956e9),
+                                      ),
+                                    ],
                                   ),
-                                )),
-                            Container(
-                              margin: const EdgeInsets.only(right: 10),
-                              color: Colors.transparent,
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    const Text("See more", style: textStyle),
-                                    SizedBox(
-                                      width: SizeConfig
-                                          .getProportionateScreenHeight(5),
-                                    ),
-                                    const Icon(
-                                      Icons.arrow_forward_outlined,
-                                      color: Color(0xff5956e9),
-                                    ),
-                                  ],
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                 if (state is SearchErrorFetchDataState)
                   Expanded(

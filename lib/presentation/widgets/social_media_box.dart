@@ -13,22 +13,22 @@ class SocialMediaBox extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: const [
-            SocialCard(
-              svgIconPath: "assets/icons/google.svg",
-            ),
-            SocialCard(
-              svgIconPath: "assets/icons/facebook.svg",
-            ),
-            SocialCard(
-              svgIconPath: "assets/icons/twitter.svg",
-            ),
+            // SocialCard(
+            //   svgIconPath: "assets/icons/google.svg",
+            // ),
+            // SocialCard(
+            //   svgIconPath: "assets/icons/facebook.svg",
+            // ),
+            // SocialCard(
+            //   svgIconPath: "assets/icons/twitter.svg",
+            // ),
           ],
         ),
-        Text(
-          "By continue you are confirm that you agree\n with our terms and conditions",
-          style: Theme.of(context).textTheme.caption,
-          textAlign: TextAlign.center,
-        )
+        // Text(
+        //   "By continue you are confirm that you agree\n with our terms and conditions",
+        //   style: Theme.of(context).textTheme.caption,
+        //   textAlign: TextAlign.center,
+        // )
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sun_bright/presentation/screens/color_pallete_grid/color_pallete_grid.dart';
 import 'package:sun_bright/presentation/screens/forgot_password/forgot_password_screen.dart';
 import 'package:sun_bright/presentation/screens/product_details/product_details_screen.dart';
 import 'package:sun_bright/presentation/screens/profile/profile_screen.dart';
@@ -27,5 +28,6 @@ final Map<String, WidgetBuilder> routes = {
   OTPScreen.routeName: (context) => const OTPScreen(),
   CheckoutScreen.routeName: (context) => const CheckoutScreen(),
   FavouriteScreen.routeName: (context) => const FavouriteScreen(),
-  OrderScreen.routeName: (context) => const OrderScreen()
+  OrderScreen.routeName: (context) => const OrderScreen(),
+  // Interior_ColorPalleteGrid.routeName: (context) => const Interior_ColorPalleteGrid(),
 };

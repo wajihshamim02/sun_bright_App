@@ -19,8 +19,7 @@ class ProductDetailsScreen extends StatelessWidget {
         preferredSize: const Size.fromHeight(150),
         child: CustomAppBar(
           productId: product.id,
-          isProductFavourite: product.isFavourite,
-          title: '',
+          isProductFavourite: product.isFavourite, title: '',
         ),
       ),
       body: DetailsScreenContent(product: product),
