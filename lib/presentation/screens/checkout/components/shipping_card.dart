@@ -30,7 +30,7 @@ class ShippingCard extends StatelessWidget {
           ],
         ),
         Container(
-          margin: const EdgeInsets.only(top: 10),
+          // margin: const EdgeInsets.only(top: 1),
           decoration:  BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(25)
@@ -40,7 +40,7 @@ class ShippingCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 25,),
+                const SizedBox(height: 30,),
                 Row(
                   children: const [
                      SizedBox(width: 18,),

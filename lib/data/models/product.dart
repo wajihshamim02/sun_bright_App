@@ -155,7 +155,7 @@ List<Product> demoProducts = [
       {"colorName": "Red Rose", "color": const Color(0xFFF6625E)},
       {"colorName": "Purple", "color": const Color(0xFF836DB8)},
       {"colorName": "Gold", "color": const Color(0xFFDECB9C)},
-      {"colorName": "Red", "color": const Color(0xE7FF0D29)}
+      {"colorName": "Red", "color": Color.fromARGB(231, 255, 21, 13)}
     ],
     title: "Super Emulsion",
     price: 20.20,

@@ -16,57 +16,55 @@ class CartAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<CartBloc>(context);
-    return SafeArea(
-      child: Column(
-        children: [
-          SizedBox(
-            height: SizeConfig.getProportionateScreenWidth(30),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: SizeConfig.getProportionateScreenWidth(40),
-                  height: SizeConfig.getProportionateScreenWidth(40),
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40)),
-                      backgroundColor: primaryColor,
-                      // backgroundColor: Colors.white,
-                      padding: EdgeInsets.zero,
-                    ),
-                    onPressed: () => Navigator.pop(context),
-                    child: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.black,
-                    ),
+    return Column(
+      children: [
+        SizedBox(
+          height: SizeConfig.getProportionateScreenWidth(30),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: SizeConfig.getProportionateScreenWidth(40),
+                height: SizeConfig.getProportionateScreenWidth(40),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    backgroundColor: primaryColor,
+                    // backgroundColor: Colors.white,
+                    padding: EdgeInsets.zero,
                   ),
-                ),
-                const Text(
-                  "Basket",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                GestureDetector(
+                  onPressed: () => Navigator.pop(context),
                   child: const Icon(
-                    Icons.restore_from_trash,
-                    color: Colors.redAccent,
+                    Icons.arrow_back,
+                    color: Colors.black,
                   ),
-                  onTap: () {
-                    bloc.add(const ClearCartContentEvent());
-                  },
-                )
-              ],
-            ),
+                ),
+              ),
+              const Text(
+                "Basket",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              GestureDetector(
+                child: const Icon(
+                  Icons.restore_from_trash,
+                  color: Colors.redAccent,
+                ),
+                onTap: () {
+                  bloc.add(const ClearCartContentEvent());
+                },
+              )
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

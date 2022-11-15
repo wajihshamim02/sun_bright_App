@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sun_bright/presentation/screens/home/components/need_a_painter.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/enums.dart';
@@ -89,6 +90,8 @@ class _HomeContentState extends State<HomeContent> {
             SliverToBoxAdapter(child: Categories()),
             // Special Offers component
             SliverToBoxAdapter(child: const SpecialOffers()),
+            // need a painter screens
+             SliverToBoxAdapter(child: const NeedAPainter()),
             // Popular products component
             SliverToBoxAdapter(child: const PopularProducts()),
 

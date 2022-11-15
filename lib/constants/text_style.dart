@@ -24,7 +24,7 @@ const textStyle = TextStyle(
 );
 
 const drawerItemTextStyle = TextStyle(
-  color: Colors.white,
+  color: Colors.black,
   fontSize: 15,
   fontFamily: "Raleway",
   fontWeight: FontWeight.w600,

@@ -27,64 +27,62 @@ class CheckoutCard extends StatelessWidget {
             )
           ],
         ),
-        child: SafeArea(
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      height: SizeConfig.getProportionateScreenWidth(40),
-                      width: SizeConfig.getProportionateScreenWidth(40),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF5F6F9),
-                        borderRadius: BorderRadius.circular(10),
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    height: SizeConfig.getProportionateScreenWidth(40),
+                    width: SizeConfig.getProportionateScreenWidth(40),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF5F6F9),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(Icons.receipt),
+                  ),
+                  const Spacer(),
+                  const Text("Add voucher code"),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 12,
+                    color: textColor,
+                  ),
+                  SizedBox(
+                      height: SizeConfig.getProportionateScreenHeight(20)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text.rich(
+                        TextSpan(
+                          text: "Total:\n",
+                          children: [
+                            TextSpan(
+                              text: "\$337.15",
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.black),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: const Icon(Icons.receipt),
-                    ),
-                    const Spacer(),
-                    const Text("Add voucher code"),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 12,
-                      color: textColor,
-                    ),
-                    SizedBox(
-                        height: SizeConfig.getProportionateScreenHeight(20)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text.rich(
-                          TextSpan(
-                            text: "Total:\n",
-                            children: [
-                              TextSpan(
-                                text: "\$337.15",
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        SizedBox(
-                            width: SizeConfig.getProportionateScreenWidth(100),
-                            child: DefaultButton(
-                              text: "Checkout",
-                              onPressed: () {},
-                            )),
-                      ],
-                    )
-                  ],
-                ),
-              ]),
-        ));
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      SizedBox(
+                          width: SizeConfig.getProportionateScreenWidth(100),
+                          child: DefaultButton(
+                            text: "Checkout",
+                            onPressed: () {},
+                          )),
+                    ],
+                  )
+                ],
+              ),
+            ]));
   }
 }

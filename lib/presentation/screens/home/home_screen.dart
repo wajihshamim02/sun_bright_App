@@ -29,19 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return  Scaffold(
-          body:  SafeArea(
-            child: (isDeviceConnected) ? Stack(
-              children: const [
-                 CustomDrawer(),
-                 HomeContent(),
-              ]
-            ): const NoInternet()
-          ),
-
+          body:  (isDeviceConnected) ? Stack(
+            children: const [
+               CustomDrawer(),
+               HomeContent(),
+            ]
+          ): const NoInternet(),
     );
   }
-
-
   Future<void> checkConnectivity() async{
     subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) async{
       isDeviceConnected = await InternetConnectionChecker().hasConnection;

@@ -22,21 +22,19 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          SizedBox(
-            height: SizeConfig.getProportionateScreenWidth(15),
-          ),
-          Row(
-            children: [
-              const CustomBackButton(),
-              const Spacer(),
-              favoriteContainer(),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        SizedBox(
+          height: SizeConfig.getProportionateScreenWidth(15),
+        ),
+        Row(
+          children: [
+            const CustomBackButton(),
+            const Spacer(),
+            favoriteContainer(),
+          ],
+        ),
+      ],
     );
   }
 

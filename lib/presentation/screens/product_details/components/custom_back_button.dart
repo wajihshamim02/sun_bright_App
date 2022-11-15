@@ -19,13 +19,13 @@ class CustomBackButton extends StatelessWidget {
           style: TextButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-            backgroundColor: primaryColor,
+            backgroundColor: Colors.transparent,
             // backgroundColor: Colors.white,
             padding: EdgeInsets.zero,
           ),
           onPressed: () => Navigator.pop(context),
           child: const Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios,
             color: Colors.black,
           ),
         ),

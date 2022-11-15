@@ -7,13 +7,13 @@ class Circle extends StatelessWidget {
   final double borderWidth;
   final Color color;
   final Color borderColor;
-  const Circle(
+   Circle(
       {Key? key,
       required this.width,
       required this.height,
       this.borderWidth = 0,
       this.color = Colors.transparent,
-      this.borderColor = const Color(0xff706dfc)})
+      this.borderColor =  const Color.fromARGB(255, 0, 0, 0)})
       : super(key: key);
 
   @override

@@ -20,8 +20,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: primaryColor,
+      color: Colors.white,
       child: ListView(
+        physics: NeverScrollableScrollPhysics(),
         children:
         [SizedBox(
           height: MediaQuery.of(context).size.height*0.2,
@@ -35,7 +36,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   height: SizeConfig.getProportionateScreenHeight(27),
                   borderWidth: 6,
                 )
-
+    
               ),
               Positioned(
                 top: SizeConfig.getProportionateScreenHeight(-50),

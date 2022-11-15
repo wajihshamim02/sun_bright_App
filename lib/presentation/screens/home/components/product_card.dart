@@ -94,7 +94,7 @@ class _ProductCardState extends State<ProductCard> {
                         ? Icons.favorite
                         : Icons.favorite_border,
                     color: widget.product.isFavourite
-                        ? const Color(0xFFFF4848)
+                        ? Color.fromARGB(255, 253, 0, 0)
                         : const Color(0xFFDBDEE4),
                     size: 20,
                   ),
