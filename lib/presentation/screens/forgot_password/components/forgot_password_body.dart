@@ -1,11 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../widgets/custom_header.dart';
 import 'forgot_password_form.dart';
 
 class ForgotPasswordBody extends StatelessWidget {
-  const ForgotPasswordBody({Key? key}) : super(key: key);
 
+  // const ForgotPasswordBody({Key? key}) : super(key: key);
+
+ 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
