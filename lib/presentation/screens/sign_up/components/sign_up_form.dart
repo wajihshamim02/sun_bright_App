@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sun_bright/constants/form_messages.dart';
+import 'package:sun_bright/model/user_model.dart';
 import 'package:sun_bright/presentation/screens/sign_in/sign_in_screen.dart';
 
 import '../../../../constants/colors.dart';
@@ -16,10 +20,14 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailFormFieldKey = GlobalKey<FormFieldState>();
-  final _passwordFormFieldKey = GlobalKey<FormFieldState>();
-  final _confirmPasswordFormFieldKey = GlobalKey<FormFieldState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmpasswordController =
+      TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
+
   String? email, password, confirmedPassword;
   late FocusNode passwordFocusNode, confirmPasswordFocusNode;
   @override
@@ -27,6 +35,43 @@ class _SignUpFormState extends State<SignUpForm> {
     super.initState();
     passwordFocusNode = FocusNode();
     confirmPasswordFocusNode = FocusNode();
+  }
+
+  void signup(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => postDetailToFirestore())
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+    }
+  }
+
+  postDetailToFirestore() async {
+    //calling our firestore
+    //calling our usermodel
+    //sedning these values
+
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+    User? user = _auth.currentUser;
+
+    Usermodel usermodel = Usermodel();
+
+    // writing all the values
+    usermodel.email = user!.email;
+    usermodel.uid = user.uid;
+    // usermodel.nickname = nicknameController.text;
+
+    await firebaseFirestore
+        .collection("users")
+        .doc(user.uid)
+        .set(usermodel.toMap());
+
+    Fluttertoast.showToast(msg: 'Account created Successfully ');
+    Navigator.push(
+        context, MaterialPageRoute(builder: ((context) => SignInScreen())));
   }
 
   @override
@@ -41,19 +86,13 @@ class _SignUpFormState extends State<SignUpForm> {
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             Container(
-              width: double.infinity,
-              height: 80,
-              child: emailFormField()),
-          
+                width: double.infinity, height: 80, child: emailFormField()),
             Container(
-              width: double.infinity,
-              height: 80,
-              child: passwordFormField()),
-          
+                width: double.infinity, height: 80, child: passwordFormField()),
             Container(
-               width: double.infinity,
-              height: 80,
-              child: confirmPasswordFormField()),
+                width: double.infinity,
+                height: 80,
+                child: confirmPasswordFormField()),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
@@ -63,35 +102,33 @@ class _SignUpFormState extends State<SignUpForm> {
               forgroundColor: Colors.white,
               width: MediaQuery.of(context).size.width * 0.85,
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  Navigator.pushNamed(context, CompleteProfileScreen.routeName,
-                      arguments:
-                          ScreenArgs(email: email!, password: password!));
-                }
+                signup(_emailController.text, _passwordController.text,);
               },
             ),
-              SizedBox(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.16,
-            ),  
-           Text('Already have an account?',style: TextStyle(fontSize: 18),),
-                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                InkWell(
-                  onTap: () => Navigator.push(
-                      context,
-                      CustomScaleTransition(
-                          nextPageUrl: SignInScreen.routeName,
-                          nextPage: const SignInScreen())),
-                          
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(
-                        color: primaryColor, fontWeight: FontWeight.bold, 
-                        fontSize:18),
-                  ),
-                ),
+            ),
+            Text(
+              'Already have an account?',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            InkWell(
+              onTap: () => Navigator.push(
+                  context,
+                  CustomScaleTransition(
+                      nextPageUrl: SignInScreen.routeName,
+                      nextPage: const SignInScreen())),
+              child: const Text(
+                "Login",
+                style: TextStyle(
+                    color: primaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+            ),
           ],
         ),
       ),
@@ -100,15 +137,20 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField emailFormField() {
     return TextFormField(
-      key: _emailFormFieldKey,
-      onSaved: (newEmail) {
-        setState(() {
-          email = newEmail;
-        });
+      controller: _emailController,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ("Please Enter your Email ");
+        }
+
+        if (!RegExp(
+                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(value)) {
+          return ("Please Enter a valid email");
+        }
+        return null;
       },
-      onChanged: (newEmail) {
-        _emailFormFieldKey.currentState!.validate();
-      },
+   
       onFieldSubmitted: (newEmail) {
         passwordFocusNode.requestFocus();
       },
@@ -117,70 +159,77 @@ class _SignUpFormState extends State<SignUpForm> {
           labelText: "Email",
           hintText: "Enter your email",
           suffixIcon: Icon(Icons.email)),
-      validator: (newEmail) {
-        if (newEmail!.isEmpty) {
-          return kEmailNullError;
-        } else if (!emailValidatorRegExp.hasMatch(newEmail)) {
-          return kInvalidEmailError;
-        }
-        return null;
-      },
+    
     );
   }
 
   TextFormField passwordFormField() {
     return TextFormField(
-      key: _passwordFormFieldKey,
+      controller: _passwordController,
       focusNode: passwordFocusNode,
-      onChanged: (newPassword) {
-        _passwordFormFieldKey.currentState!
-            .validate(); // call passowrd field validator
-        password = newPassword;
+      validator: (value) {
+        RegExp regex = new RegExp(r'^.{6,}$');
+        if (value!.isEmpty) {
+          return ("Please Enter your Password ");
+        }
+
+        if (!regex.hasMatch(value)) {
+          return ("Please Enter Valid Password (Min 6 Characters)");
+        }
       },
-      onFieldSubmitted: (newPassword) {
-        confirmPasswordFocusNode.requestFocus();
+      onSaved: (value) {
+        _passwordController.text = value!;
       },
+      // onChanged: (newPassword) {
+      //   _passwordFormFieldKey.currentState!
+      //       .validate(); // call passowrd field validator
+      //   password = newPassword;
+      // },
+      // onFieldSubmitted: (newPassword) {
+      //   confirmPasswordFocusNode.requestFocus();
+      // },
       keyboardType: TextInputType.visiblePassword,
       obscureText: false,
       decoration: const InputDecoration(
           labelText: "Password",
           hintText: "Enter your password",
           suffixIcon: Icon(Icons.lock)),
-      validator: (newPassword) {
-        if (newPassword!.isEmpty) {
-          return kPasswordNullError;
-        } else if (newPassword.length < 8) {
-          return kShortPasswordError;
-        }
-        return null;
-      },
+      // validator: (newPassword) {
+      //   if (newPassword!.isEmpty) {
+      //     return kPasswordNullError;
+      //   } else if (newPassword.length < 8) {
+      //     return kShortPasswordError;
+      //   }
+      //   return null;
+      // },
     );
   }
 
   TextFormField confirmPasswordFormField() {
     return TextFormField(
-      key: _confirmPasswordFormFieldKey,
+      controller: _confirmpasswordController,
       focusNode: confirmPasswordFocusNode,
-      onChanged: (newPassword) {
-        _confirmPasswordFormFieldKey.currentState!
-            .validate(); // call confirm passowrd field validator
-        confirmedPassword = newPassword;
-      },
+    
+        validator: (value) {
+
+          if(value == null || value.isEmpty){
+            return 'Please Enter Confirm Password';
+          }
+          if (_confirmpasswordController.text !=
+              _passwordController.text) {
+            return "Password don't match";
+          }
+          return null;
+        },
+        onSaved: (value) {
+          _confirmpasswordController.text = value!;
+        },
       keyboardType: TextInputType.visiblePassword,
       obscureText: false,
       decoration: const InputDecoration(
           labelText: "Confirm Password",
           hintText: "Re-Enter your password",
           suffixIcon: Icon(Icons.lock)),
-      validator: (newPassword) {
-        if (newPassword!.isEmpty) {
-          return kPasswordNullError;
-        } else if (newPassword != password) {
-          return kPasswordMatchError;
-        }
-        return null;
-      },
-    
     );
   }
 

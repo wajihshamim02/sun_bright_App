@@ -435,7 +435,7 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
                         child: Row(
                           children: [
                             IconButton(
-                                icon: const Icon(Icons.arrow_back),
+                                icon: const Icon(Icons.arrow_back_ios),
                                 onPressed: () {
                                   Navigator.pop(context);
                                 }),

@@ -52,7 +52,8 @@ const productDescriptionStyle = TextStyle(
 const priceTextStyle = TextStyle(
   color: Color(0xff5956e9),
   fontSize: 18,
-  fontWeight: FontWeight.w700,
+  fontWeight: FontWeight.bold,
+  fontFamily: "Roboto"
 );
 
 const TextStyle splashHeadingTextStyle = TextStyle(

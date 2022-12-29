@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sun_bright/presentation/screens/color_pallete_grid/color_pallete_grid.dart';
 import 'package:sun_bright/presentation/screens/forgot_password/forgot_password_screen.dart';
+import 'package:sun_bright/presentation/screens/home/components/need_a_painter.dart';
 import 'package:sun_bright/presentation/screens/product_details/product_details_screen.dart';
 import 'package:sun_bright/presentation/screens/profile/profile_screen.dart';
 import 'package:sun_bright/presentation/screens/sign_in/sign_in_screen.dart';
 import 'package:sun_bright/presentation/screens/sign_up/sign_up_screen.dart';
+import 'package:sun_bright/presentation/widgets/custom_bottom_navbar.dart';
 
 import '../presentation/screens/cart/cart_screen.dart';
 import '../presentation/screens/checkout/checkout_screen.dart';
@@ -29,5 +31,8 @@ final Map<String, WidgetBuilder> routes = {
   CheckoutScreen.routeName: (context) => const CheckoutScreen(),
   FavouriteScreen.routeName: (context) => const FavouriteScreen(),
   OrderScreen.routeName: (context) => const OrderScreen(),
+  NeedAPainter.routeName: (context) => const NeedAPainter(),
+  BottomNavBar.routeName: (context) => BottomNavBar()
+
   // Interior_ColorPalleteGrid.routeName: (context) => const Interior_ColorPalleteGrid(),
 };

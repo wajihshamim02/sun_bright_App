@@ -41,7 +41,8 @@ class CartItemCard extends StatelessWidget {
           ),
         ),
         // Product's details
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start, children: [
           const SizedBox(
             height: 10,
           ),

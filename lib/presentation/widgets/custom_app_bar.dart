@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sun_bright/Utilities/size_config.dart';
+import 'package:sun_bright/presentation/screens/home/home_screen.dart';
+import 'package:sun_bright/presentation/widgets/custom_bottom_navbar.dart';
 
 import '../../constants/colors.dart';
 
@@ -36,7 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       // backgroundColor: Colors.white,
                       padding: EdgeInsets.zero,
                     ),
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> BottomNavBar())),
                     child: const Icon(
                       Icons.arrow_back_ios,
                       color: Color.fromARGB(255, 0, 0, 0),

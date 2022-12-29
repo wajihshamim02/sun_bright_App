@@ -4,8 +4,9 @@ import 'package:sun_bright/data/models/product.dart';
 import '../../../../Utilities/size_config.dart';
 import 'custom_back_button.dart';
 
+// ignore: must_be_immutable
 class CustomAppBar extends StatefulWidget {
-  final int productId;
+  final int? productId;
   late bool isProductFavourite;
   CustomAppBar({
     Key? key,
@@ -25,7 +26,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     return Column(
       children: [
         SizedBox(
-          height: SizeConfig.getProportionateScreenWidth(15),
+          height: SizeConfig.getProportionateScreenWidth(50),
         ),
         Row(
           children: [

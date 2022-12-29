@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sun_bright/constants/colors.dart';
 
 import '../../../../constants/form_messages.dart';
@@ -12,12 +14,30 @@ class ForgotPasswordForm extends StatefulWidget {
 }
 
 class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailFormFieldKey = GlobalKey<FormFieldState>();
+
+
+  final TextEditingController _emailController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
   String? email;
   @override
   void initState() {
     super.initState();
+  }
+
+
+   void resetpassword(String email) async {
+    if (_formKey.currentState!.validate()) {
+      await _auth
+          .sendPasswordResetEmail(email: email)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: 'Please Check your Email'),
+             
+              })
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+    }
   }
 
   @override
@@ -39,11 +59,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             forgroundColor: Colors.white,
             width: MediaQuery.of(context).size.width * 0.85,
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text("Email: $email")));
-              }
+              resetpassword(_emailController.text)  ;          
             },
           ),
         ],
@@ -53,26 +69,24 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
 
   TextFormField emailFormField() {
     return TextFormField(
-      key: _emailFormFieldKey,
-      onSaved: (newEmail) {
-        setState(() {
-          email = newEmail;
-        });
-      },
-      onChanged: (newEmail) {
-        _emailFormFieldKey.currentState!.validate();
-      },
+      // key: _formKey,
+      controller: _emailController,
+    
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
           labelText: "Email",
           hintText: "Enter your email",
           suffixIcon: Icon(Icons.email)),
-      validator: (newEmail) {
-        if (newEmail!.isEmpty) {
+     validator: (value) {
+        if (value!.isEmpty) {
           // TextFormField kEmailNullError = TextFormField();
-          // return kEmailNullError;
-        } else if (!emailValidatorRegExp.hasMatch(newEmail)) {
-          return kInvalidEmailError;
+          // return ("Please Enter your Email ");
+        }
+
+        if (!RegExp(
+                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(value)) {
+          return ("Please Enter a valid email");
         }
         return null;
       },

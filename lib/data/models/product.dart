@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sun_bright/constants/text_style.dart';
 
 class Product {
   late final int id;

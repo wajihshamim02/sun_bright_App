@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:sun_bright/constants/text_style.dart';
 import 'package:sun_bright/presentation/screens/cart/components/cart_app_bar.dart';
 
 import '../../../../Utilities/size_config.dart';
@@ -145,9 +146,10 @@ class _ContactInfoState extends State<ContactInfo> {
       // onFieldSubmitted: (newEmail) {
       //   passwordFocusNode.requestFocus();
       // },
+      style: TextStyle(fontFamily: "Roboto"),
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
-          labelText: "Your name", hintText: "Enter your name"),
+          labelText: "Your name", hintText: "Enter your name",hintStyle: TextStyle(fontFamily: "Roboto")),
       // validator: (newEmail) {
       //   if (newEmail!.isEmpty) {
       //     return kEmailNullError;
@@ -174,9 +176,10 @@ class _ContactInfoState extends State<ContactInfo> {
       // onFieldSubmitted: (newEmail) {
       //   passwordFocusNode.requestFocus();
       // },
+      style: TextStyle(fontFamily: "Roboto"),
       keyboardType: TextInputType.phone,
       decoration: const InputDecoration(
-          labelText: "Phone", hintText: "Enter your Phone number"),
+          labelText: "Phone", hintText: "Enter your Phone number",hintStyle: TextStyle(fontFamily: "Roboto")),
       // validator: (newEmail) {
       //   if (newEmail!.isEmpty) {
       //     return kEmailNullError;
@@ -190,19 +193,20 @@ class _ContactInfoState extends State<ContactInfo> {
 
   TextFormField time1() {
     return TextFormField(
- 
-      keyboardType: TextInputType.emailAddress,
+      style: TextStyle(fontFamily: "Roboto"),
+      keyboardType: TextInputType.name,
       decoration: const InputDecoration(
-           hintText: "09:00"),
+        
+           hintText: "09:00",hintStyle: TextStyle(fontFamily: "Roboto")),
 
     );
   }
   TextFormField time2() {
     return TextFormField(
- 
-      keyboardType: TextInputType.emailAddress,
+      style: TextStyle(fontFamily: "Roboto"),
+      keyboardType: TextInputType.name,
       decoration: const InputDecoration(
-          hintText: "20:00"),
+          hintText: "20:00",hintStyle: TextStyle(fontFamily: "Roboto")),
 
     );
   }

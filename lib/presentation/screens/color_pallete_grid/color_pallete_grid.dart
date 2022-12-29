@@ -89,8 +89,10 @@ class _Interior_ColorPalleteGridState extends State<Interior_ColorPalleteGrid> {
                 },
                 childCount: 8,
               ),
+              
             ),
           ),
+          SliverToBoxAdapter(child: SizedBox(height: MediaQuery.of(context).size.height*0.02,))
         ],
       ),
     );

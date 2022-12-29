@@ -101,7 +101,9 @@ class _HomeContentState extends State<HomeContent> {
               SliverToBoxAdapter(child: Categories()),
               // Special Offers component
               SliverToBoxAdapter(child: const SpecialOffers()),
-              // Popular products component
+              // Popular products componentr
+              SliverToBoxAdapter(child: const NeedAPainter()),
+
               SliverToBoxAdapter(child: const PopularProducts()),
 
               // SliverToBoxAdapter(child: BottomNavBar()),

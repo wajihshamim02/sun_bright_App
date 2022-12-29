@@ -43,17 +43,19 @@ class _CartBodyState extends State<CartBody> {
               const SizedBox(
                 height: 20,
               ),
-              const CustomBanner(
-                text: "Delivery for FREE until the end of the month",
-                backgroundColor: Color(0xffd3f1ff),
-              ),
+              // const CustomBanner(
+              //   text: "Delivery for FREE until the end of the month",
+              //   backgroundColor: Color(0xffd3f1ff),
+              // ),
               // List of cart's products
               Flexible(
                 flex: 3,
-                child: (state is CartSuccessFetchDataState &&
-                            state.cartItems.isNotEmpty ||
-                        state is CartItemRemovedSuccessfulyState)
-                    ? Padding(
+                child: 
+                // (state is CartSuccessFetchDataState &&
+                //             state.cartItems.isNotEmpty ||
+                //         state is CartItemRemovedSuccessfulyState)
+                    //?
+                     Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: ListView.builder(
                           itemCount: demoCart.products.length,
@@ -92,7 +94,7 @@ class _CartBodyState extends State<CartBody> {
                           ),
                         ),
                       )
-                    : const NoItemsFound(),
+                    // : const NoItemsFound(),
               ),
               const SizedBox(
                 height: 45,
@@ -116,7 +118,9 @@ class _CartBodyState extends State<CartBody> {
                           style: TextStyle(
                             color: Color(0xff5956e9),
                             fontSize: 22,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Roboto",
+                            // letterSpacing: 1
                           ),
                         )
                       ],
@@ -125,6 +129,7 @@ class _CartBodyState extends State<CartBody> {
                   const SizedBox(
                     height: 25,
                   ),
+
                   DefaultButton(
                     text: "Checkout",
                     backgroundColor: primaryColor,
@@ -144,6 +149,7 @@ class _CartBodyState extends State<CartBody> {
           ),
         );
       },
-    ));
+    )
+    );
   }
 }

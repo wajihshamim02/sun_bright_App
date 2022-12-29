@@ -10,12 +10,13 @@ class ProfileContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Column(
         children: [
           const ProfilePicture(),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: MediaQuery.of(context).size.height*0.02,
           ),
           ProfileMenu(
               text: "My Account",

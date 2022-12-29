@@ -38,8 +38,8 @@ class CheckoutBody extends StatelessWidget {
                       style: TextStyle(
                         color: Color(0xff5956e9),
                         fontSize: 22,
-                        fontFamily: "Raleway",
-                        fontWeight: FontWeight.w700,
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
                       ),
                     )
                   ],
@@ -144,15 +144,17 @@ class CheckoutBody extends StatelessWidget {
                                             fontSize: 27,
                                             fontFamily: "Serif"),
                                       ),
-                                       SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.01),
+                                      SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.01),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: const [
                                           Text(
-                                            "Muhammmad Wajih Shamim",
+                                            "Wahaj",
                                             style: TextStyle(
                                               color: Color(0xff858585),
                                               fontSize: 15,
@@ -174,9 +176,6 @@ class CheckoutBody extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.01),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -193,8 +192,8 @@ class CheckoutBody extends StatelessWidget {
                                     style: TextStyle(
                                       color: Color(0xff5956e9),
                                       fontSize: 22,
-                                      fontFamily: "Raleway",
-                                      fontWeight: FontWeight.w700,
+                                      fontFamily: "Roboto",
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   )
                                 ],

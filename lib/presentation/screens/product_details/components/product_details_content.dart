@@ -43,6 +43,7 @@ class DetailsScreenContent extends StatelessWidget {
                                 product: product,
                                 quantity: Random().nextInt(10))));
                       },
+                      
                     ),
                   ),
                 ],

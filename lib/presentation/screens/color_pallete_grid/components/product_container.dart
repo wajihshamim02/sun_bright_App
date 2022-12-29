@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
-
+import 'package:path/path.dart';
+import 'package:sun_bright/presentation/screens/product_details/product_details_screen.dart';
 import '../../../../Utilities/size_config.dart';
 import '../../../../constants/colors.dart';
+import '../../../../data/models/product.dart';
+import '../../cart/cart_screen.dart';
+import '../../checkout/checkout_screen.dart';
+// import '../../product_details/product_details_screen.dart';
 
 class ProductDetailContainer extends StatelessWidget {
   final String? id, image, title;
   final double price;
+  // final product = ModalRoute.of(context)!.settings.arguments as Product;
   // final GestureTapCallback onTap;
 
-  const ProductDetailContainer(
+   ProductDetailContainer(
       {Key? key,
       this.id,
       required this.image,
@@ -18,11 +24,12 @@ class ProductDetailContainer extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return productDetailCard();
+  Widget build( BuildContext context) {
+    return productDetailCard( context);
   }
 
-  Widget productDetailCard() {
+  Widget productDetailCard(BuildContext context) {
+ 
     return
         // GestureDetector(
         //   onTap: onTap,
@@ -35,56 +42,59 @@ class ProductDetailContainer extends StatelessWidget {
           Positioned.fill(
             child: Align(
               child: Container(
-                  width: SizeConfig.getProportionateScreenWidth(200),
-                  height: SizeConfig.getProportionateScreenWidth(250),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: const [primaryShadow],
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: SizeConfig.getProportionateScreenHeight(170),
+                width: SizeConfig.getProportionateScreenWidth(200),
+                height: SizeConfig.getProportionateScreenWidth(250),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: const [primaryShadow],
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: SizeConfig.getProportionateScreenHeight(170),
+                    ),
+                    Text(
+                      title!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 14,
+                        fontFamily: "Raleway",
+                        fontWeight: FontWeight.w200,
                       ),
-                      Text(
-                        title!,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
-                          fontFamily: "Raleway",
-                          fontWeight: FontWeight.w200,
-                        ),
-                      ),
-                      // const SizedBox(
-                      //   height: 4,
-                      // ),
-                      // if (category != null)
-                      //   Text(
-                      //     category!,
-                      //     style: const TextStyle(
-                      //       color: Color(0xff858585),
-                      //       fontSize: 16,
-                      //       fontFamily: "Raleway",
-                      //     ),
-                      //   ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "\Rs. $price",
-                        style: const TextStyle(
+                    ),
+                    // const SizedBox(
+                    //   height: 4,
+                    // ),
+                    // if (category != null)
+                    //   Text(
+                    //     category!,
+                    //     style: const TextStyle(
+                    //       color: Color(0xff858585),
+                    //       fontSize: 16,
+                    //       fontFamily: "Raleway",
+                    //     ),
+                    //   ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "\Rs. $price",
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,
                           //fontFamily: "Raleway",
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Roboto"),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(
+                          context, CartScreen.routeName,),
+                      child: Container(
                         alignment: Alignment.center,
                         width: SizeConfig.getProportionateScreenWidth(150),
                         height: SizeConfig.getProportionateScreenHeight(28),
@@ -102,9 +112,11 @@ class ProductDetailContainer extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                      )
-                    ],
-                  )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           // ),
@@ -153,7 +165,8 @@ class ProductDetailContainer extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Text(
                     '7170',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                    style: TextStyle(
+                        color: Colors.grey, fontSize: 12, fontFamily: "Roboto"),
                   )),
             ),
           ),

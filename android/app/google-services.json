@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "340336499529",
+    "project_id": "sun-bright-app",
+    "storage_bucket": "sun-bright-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340336499529:android:a34c54fca998247c991898",
+        "android_client_info": {
+          "package_name": "com.example.sun_bright"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340336499529-nl7l6i9orlj7thd13acncf5ko3eb16df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9AenpsO37E5d3CQIODjAztdJ-oB5OogY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340336499529-nl7l6i9orlj7thd13acncf5ko3eb16df.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

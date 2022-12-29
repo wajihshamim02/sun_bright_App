@@ -65,8 +65,9 @@ class _ProductCardState extends State<ProductCard> {
                 "\$${widget.product.price}",
                 style: TextStyle(
                   fontSize: SizeConfig.getProportionateScreenWidth(18),
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.bold,
                   color: primaryColor,
+                  fontFamily: "Roboto"
                 ),
               ),
               InkWell(

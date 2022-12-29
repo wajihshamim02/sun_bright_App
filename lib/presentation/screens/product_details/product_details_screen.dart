@@ -16,7 +16,7 @@ class ProductDetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6F9),
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(150),
+        preferredSize: const Size.fromHeight(110),
         child: CustomAppBar(
           productId: product.id,
           isProductFavourite: product.isFavourite, title: '',

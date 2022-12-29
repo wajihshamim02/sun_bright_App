@@ -93,6 +93,7 @@ import '../screens/cart/cart_screen.dart';
 import '../screens/home/home_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
+  static const String routeName = "/custom_bottom_navbar";
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }
@@ -137,7 +138,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
           ],
           color: Colors.white,
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {

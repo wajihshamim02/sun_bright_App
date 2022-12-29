@@ -58,19 +58,22 @@ class ItemCard extends StatelessWidget {
                                 fontSize: 20,
                                 fontFamily: "Raleway",
                                 fontWeight: FontWeight.w600,
+
                               ),
+                              textAlign: TextAlign.center,
                             ),
                             SizedBox(
                               height:
                                   SizeConfig.getProportionateScreenHeight(10),
                             ),
                             Text(
-                              "\$$price",
+                              "\$ $price",
                               style: const TextStyle(
                                 color: Color(0xff5956e9),
                                 fontSize: 17,
-                                fontFamily: "Raleway",
-                                fontWeight: FontWeight.w700,
+                                fontFamily: "Roboto",
+                                fontWeight: FontWeight.bold,
+                                
                               ),
                             ),
                           ],

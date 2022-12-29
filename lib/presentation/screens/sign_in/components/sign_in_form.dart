@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sun_bright/constants/colors.dart';
 import 'package:sun_bright/presentation/screens/sign_up/sign_up_screen.dart';
 import 'package:sun_bright/presentation/widgets/custom_bottom_navbar.dart';
@@ -10,6 +12,7 @@ import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_page_transition.dart';
 import '../../forgot_password/forgot_password_screen.dart';
 import '../../home/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -19,10 +22,13 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
-  final SqliteDbHelper _sqliteDbHelper = SqliteDbHelper();
-  final _formKey = GlobalKey<FormState>();
-  final _emailFormFieldKey = GlobalKey<FormFieldState>();
-  final _passwordFormFieldKey = GlobalKey<FormFieldState>();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
+
   String? email, password;
   late FocusNode passwordFocusNode;
   String paswordFieldSuffixText = "Show";
@@ -31,6 +37,25 @@ class _SignInFormState extends State<SignInForm> {
   void initState() {
     super.initState();
     passwordFocusNode = FocusNode();
+  }
+
+  void signin(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: 'Login Successfully'),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => HomeScreen()),
+                  ),
+                ),
+              })
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+    }
   }
 
   @override
@@ -54,48 +79,56 @@ class _SignInFormState extends State<SignInForm> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                emailFormField(),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                Container(
+                  width: double.infinity,
+                  height: 80,
+                  child: emailFormField(),
                 ),
-                passwordFormField(),
+                Container(
+                    width: double.infinity,
+                    height: 80,
+                    child: passwordFormField()),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 CustomButton(
                   title: "Login",
                   backgroundColor: primaryColor,
                   forgroundColor: Colors.white,
                   width: MediaQuery.of(context).size.width * 0.85,
-                  onPressed: () async {
-                    // // if (_formKey.currentState!.validate()) {
-                    //   _formKey.currentState!.save();
-                    //   // Check user Identity
-                    //   bool result = await _sqliteDbHelper.checkIdentity(
-                    //       email: email, password: password);
-                    //   if (result) {
-                    //     KeyboardUtil.hideKeyboard(context);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                // nextPageUrl: HomeScreen.routeName,
-                                BottomNavBar()));
-                    // } else {
-                    //   ScaffoldMessenger.of(context)
-                    //       .showSnackBar(const SnackBar(
-                    //     content: Text("Please check your email or password"),
-                    //     backgroundColor: Colors.black38,
-                    //   ));
-                    // }
-                    // }
+                  onPressed: () {
+                    signin(_emailController.text, _passwordController.text);
                   },
                 ),
-                 SizedBox(
+                SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: InkWell(
+                    onTap: () => Navigator.push(
+                        context,
+                        CustomScaleTransition(
+                            nextPageUrl: ForgotPasswordScreen.routeName,
+                            nextPage: const ForgotPasswordScreen())),
+                    child: const Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                          color: primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+                Text(
+                  'Dont have an account?',
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
                 ),
                 Align(
                   alignment: Alignment.center,
@@ -130,7 +163,6 @@ class _SignInFormState extends State<SignInForm> {
                       CustomScaleTransition(
                           nextPageUrl: SignUpScreen.routeName,
                           nextPage: const SignUpScreen())),
-                          
                   child: const Text(
                     "Create Account",
                     style: TextStyle(
@@ -149,48 +181,43 @@ class _SignInFormState extends State<SignInForm> {
 
   TextFormField emailFormField() {
     return TextFormField(
-      // key: _emailFormFieldKey,
-      // onSaved: (newEmail) {
-      //   setState(() {
-      //     email = newEmail;
-      //   });
-      // },
-      // onChanged: (newEmail) {
-      //   _emailFormFieldKey.currentState!
-      //       .validate(); // call emailFormField validator
-      // },
-      // onFieldSubmitted: (newEmail) {
-      //   passwordFocusNode.requestFocus();
-      // },
+      controller: _emailController,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ("Please Enter your Email ");
+        }
+
+        if (!RegExp(
+                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(value)) {
+          return ("Please Enter a valid email");
+        }
+        return null;
+      },
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
           labelText: "Email", hintText: "Enter your email"),
-      // validator: (newEmail) {
-      //   if (newEmail!.isEmpty) {
-      //     return kEmailNullError;
-      //   } else if (!emailValidatorRegExp.hasMatch(newEmail)) {
-      //     return kInvalidEmailError;
-      //   }
-      //   return null;
-      // },
     );
   }
 
   TextFormField passwordFormField() {
     return TextFormField(
-      // key: _passwordFormFieldKey,
-      // focusNode: passwordFocusNode,
-      // onSaved: (newPassword) {
-      //   setState(() {
-      //     password = newPassword;
-      //   });
-      // },
-      // onChanged: (newPassword) {
-      //   _passwordFormFieldKey.currentState!
-      //       .validate(); // call passowrd field validator
-      // },
+      controller: _passwordController,
       keyboardType: TextInputType.visiblePassword,
       obscureText: _obscureText,
+      validator: (value) {
+        RegExp regex = new RegExp(r'^.{6,}$');
+        if (value!.isEmpty) {
+          return ("Please Enter your Password ");
+        }
+
+        if (!regex.hasMatch(value)) {
+          return ("Please Enter Valid Password (Min 6 Characters)");
+        }
+      },
+      onSaved: (value) {
+        _passwordController.text = value!;
+      },
       decoration: InputDecoration(
           labelText: "Password",
           hintText: "Enter your password",
@@ -207,14 +234,6 @@ class _SignInFormState extends State<SignInForm> {
               });
             },
           )),
-      // validator: (newPassword) {
-      //   if (newPassword!.isEmpty) {
-      //     return kPasswordNullError;
-      //   } else if (newPassword.length < 8) {
-      //     return kShortPasswordError;
-      //   }
-      //   return null;
-      // },
     );
   }
 

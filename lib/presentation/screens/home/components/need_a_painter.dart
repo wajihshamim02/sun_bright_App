@@ -5,6 +5,7 @@ import '../../../../constants/colors.dart';
 import '../../../widgets/custom_page_transition.dart';
 
 class NeedAPainter extends StatefulWidget {
+  static const String routeName = "/need_a_painter";
   const NeedAPainter({Key? key}) : super(key: key);
 
   @override
