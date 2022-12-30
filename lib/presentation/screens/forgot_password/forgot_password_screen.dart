@@ -15,7 +15,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: primaryColor,
       ),
-      body: const ForgotPasswordBody(),
+      body:  ForgotPasswordBody(),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sun_bright/constants/form_messages.dart';
 import 'package:sun_bright/model/user_model.dart';
+import 'package:sun_bright/presentation/screens/sign_in/components/sign_in_form.dart';
 import 'package:sun_bright/presentation/screens/sign_in/sign_in_screen.dart';
 
 import '../../../../constants/colors.dart';
@@ -23,9 +24,10 @@ class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmpasswordController =TextEditingController();
-  final TextEditingController _usernameControoler =TextEditingController();
-
+  final TextEditingController _usernameController = TextEditingController();
+  
+  final TextEditingController _confirmpasswordController =
+      TextEditingController();
 
   final _auth = FirebaseAuth.instance;
 
@@ -38,7 +40,7 @@ class _SignUpFormState extends State<SignUpForm> {
     confirmPasswordFocusNode = FocusNode();
   }
 
-  void signup(String email, String password,String username) async {
+  void signup(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
@@ -63,7 +65,7 @@ class _SignUpFormState extends State<SignUpForm> {
     // writing all the values
     usermodel.email = user!.email;
     usermodel.uid = user.uid;
-    usermodel.username = _usernameControoler.text;
+    // usermodel.nickname = nicknameController.text;
 
     await firebaseFirestore
         .collection("users")
@@ -105,7 +107,7 @@ class _SignUpFormState extends State<SignUpForm> {
               forgroundColor: Colors.white,
               width: MediaQuery.of(context).size.width * 0.85,
               onPressed: () {
-              signup(_emailController.text, _passwordController.text,_usernameControoler.text);
+                signup(_emailController.text, _passwordController.text,);
               },
             ),
             SizedBox(
@@ -140,7 +142,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
 TextFormField userFormField() {
     return TextFormField(
-      controller: _usernameControoler,
+      controller: _usernameController,
       validator: (value) {
         if (value!.isEmpty) {
           return ("Please Enter your User name ");
@@ -177,7 +179,14 @@ TextFormField userFormField() {
         }
         return null;
       },
-   
+      // onSaved: (newEmail) {
+      //   setState(() {
+      //     email = newEmail;
+      //   });
+      // },
+      // onChanged: (newEmail) {
+      //   _emailFormFieldKey.currentState!.validate();
+      // },
       onFieldSubmitted: (newEmail) {
         passwordFocusNode.requestFocus();
       },
@@ -186,7 +195,14 @@ TextFormField userFormField() {
           labelText: "Email",
           hintText: "Enter your email",
           suffixIcon: Icon(Icons.email)),
-    
+      // validator: (newEmail) {
+      //   if (newEmail!.isEmpty) {
+      //     return kEmailNullError;
+      //   } else if (!emailValidatorRegExp.hasMatch(newEmail)) {
+      //     return kInvalidEmailError;
+      //   }
+      //   return null;
+      // },
     );
   }
 
