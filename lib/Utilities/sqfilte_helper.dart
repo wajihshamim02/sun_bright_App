@@ -64,28 +64,28 @@ class SqliteDbHelper {
   }
 
   // insert item to the database
-  Future<int> insertUser(User user) async {
-    final Database database = await db;
-    try {
-      final List<Map<String, dynamic>> records = await database
-          .query("users", where: "email = ?", whereArgs: [user.email]);
-      if (kDebugMode) {
-        print(records.length);
-      }
-      if (records.isEmpty) {
-        int id = await database.insert('users', user.toMap(),
-            // replace the record with a new one if the id is exist
-            conflictAlgorithm: ConflictAlgorithm.replace);
-        return id;
-      } else {
-        return -1;
-      }
-    } catch (e) {
-      print(e);
-    }
+  // Future<int> insertUser(User user) async {
+  //   final Database database = await db;
+  //   try {
+  //     final List<Map<String, dynamic>> records = await database
+  //         .query("users", where: "email = ?", whereArgs: [user.email]);
+  //     if (kDebugMode) {
+  //       print(records.length);
+  //     }
+  //     if (records.isEmpty) {
+  //       int id = await database.insert('users', user.toMap(),
+  //           // replace the record with a new one if the id is exist
+  //           conflictAlgorithm: ConflictAlgorithm.replace);
+  //       return id;
+  //     } else {
+  //       return -1;
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
 
-    return 0;
-  }
+  //   return 0;
+  // }
 
   Future<bool> checkIdentity({required email, required password}) async {
     Database database = await _sqliteDbHelper.db;

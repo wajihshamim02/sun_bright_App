@@ -75,21 +75,22 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
                             "The email is already existed please try with another one"),
                         backgroundColor: Colors.black38,
                       ));
-                    } else {
-                      User user = User(
-                          firstName: firstName!,
-                          lastName: lastName!,
-                          phoneNumber: phoneNumber!,
-                          address: address!,
-                          email: "",
-                          password: "");
-                      await _sqliteDbHelper.insertUser(user);
-                      Navigator.push(
-                          context,
-                          CustomScaleTransition(
-                              nextPageUrl: OTPScreen.routeName,
-                              nextPage: const OTPScreen()));
-                    }
+                    } 
+                    // else {
+                    //   User user = User(
+                    //       firstName: firstName!,
+                    //       lastName: lastName!,
+                    //       phoneNumber: phoneNumber!,
+                    //       address: address!,
+                    //       email: "",
+                    //       password: "");
+                    //   await _sqliteDbHelper.insertUser(user);
+                    //   Navigator.push(
+                    //       context,
+                    //       CustomScaleTransition(
+                    //           nextPageUrl: OTPScreen.routeName,
+                    //           nextPage: const OTPScreen()));
+                    // }
                   } on Exception {}
                 }
               },

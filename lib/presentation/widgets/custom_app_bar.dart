@@ -38,7 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       // backgroundColor: Colors.white,
                       padding: EdgeInsets.zero,
                     ),
-                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> BottomNavBar())),
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> CustomBottomNavbar())),
                     child: const Icon(
                       Icons.arrow_back_ios,
                       color: Color.fromARGB(255, 0, 0, 0),

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:sun_bright/presentation/widgets/custom_bottom_navbar.dart';
 
 import '../../../Utilities/size_config.dart';
 import '../../widgets/no_internet_connection.dart';
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return  Scaffold(
+      //  bottomNavigationBar:  const CustomBottomNavbar(),
           body:  (isDeviceConnected) ? Stack(
             children: const [
                CustomDrawer(),

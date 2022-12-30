@@ -46,6 +46,7 @@ class _HomeContentState extends State<HomeContent> {
             boxShadow: [if (isDrawerOpen) drawerShadow]),
         child: Scaffold(
           // bottomNavigationBar: BottomNavBar(),
+          
           body: CustomScrollView(
             slivers: [
               // SizedBox(

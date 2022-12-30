@@ -15,9 +15,8 @@ class SignUpBody extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
         child: Column(
           children: [
-             CustomHeader(
+            CustomHeader(
               title: "Create Account",
-              
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,

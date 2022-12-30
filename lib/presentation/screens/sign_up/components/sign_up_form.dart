@@ -23,8 +23,9 @@ class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmpasswordController =
-      TextEditingController();
+  final TextEditingController _confirmpasswordController =TextEditingController();
+  final TextEditingController _usernameControoler =TextEditingController();
+
 
   final _auth = FirebaseAuth.instance;
 
@@ -37,7 +38,7 @@ class _SignUpFormState extends State<SignUpForm> {
     confirmPasswordFocusNode = FocusNode();
   }
 
-  void signup(String email, String password) async {
+  void signup(String email, String password,String username) async {
     if (_formKey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
@@ -62,7 +63,7 @@ class _SignUpFormState extends State<SignUpForm> {
     // writing all the values
     usermodel.email = user!.email;
     usermodel.uid = user.uid;
-    // usermodel.nickname = nicknameController.text;
+    usermodel.username = _usernameControoler.text;
 
     await firebaseFirestore
         .collection("users")
@@ -85,6 +86,8 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
+             Container(
+                width: double.infinity, height: 80, child: userFormField()),
             Container(
                 width: double.infinity, height: 80, child: emailFormField()),
             Container(
@@ -102,7 +105,7 @@ class _SignUpFormState extends State<SignUpForm> {
               forgroundColor: Colors.white,
               width: MediaQuery.of(context).size.width * 0.85,
               onPressed: () {
-                signup(_emailController.text, _passwordController.text,);
+              signup(_emailController.text, _passwordController.text,_usernameControoler.text);
               },
             ),
             SizedBox(
@@ -134,6 +137,30 @@ class _SignUpFormState extends State<SignUpForm> {
       ),
     );
   }
+
+TextFormField userFormField() {
+    return TextFormField(
+      controller: _usernameControoler,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ("Please Enter your User name ");
+        }
+       
+        return null;
+      },
+   
+      onFieldSubmitted: (newuser) {
+        passwordFocusNode.requestFocus();
+      },
+      keyboardType: TextInputType.emailAddress,
+      decoration: const InputDecoration(
+          labelText: "User",
+          hintText: "Username",
+          suffixIcon: Icon(Icons.person)),
+    
+    );
+  }
+
 
   TextFormField emailFormField() {
     return TextFormField(

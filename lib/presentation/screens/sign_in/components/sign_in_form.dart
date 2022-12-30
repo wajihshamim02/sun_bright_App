@@ -48,7 +48,7 @@ class _SignInFormState extends State<SignInForm> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => HomeScreen()),
+                    builder: ((context) => const CustomBottomNavbar()),
                   ),
                 ),
               })
@@ -130,33 +130,7 @@ class _SignInFormState extends State<SignInForm> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: InkWell(
-                    onTap: () => Navigator.push(
-                        context,
-                        CustomScaleTransition(
-                            nextPageUrl: ForgotPasswordScreen.routeName,
-                            nextPage: const ForgotPasswordScreen())),
-                    child: const Text(
-                      "Forgot Password?",
-                      style: TextStyle(
-                          color: primaryColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.1,
-                ),
-                Text(
-                  'Dont have an account?',
-                  style: TextStyle(fontSize: 18),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
+                
                 InkWell(
                   onTap: () => Navigator.push(
                       context,

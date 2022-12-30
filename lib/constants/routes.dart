@@ -32,7 +32,10 @@ final Map<String, WidgetBuilder> routes = {
   FavouriteScreen.routeName: (context) => const FavouriteScreen(),
   OrderScreen.routeName: (context) => const OrderScreen(),
   NeedAPainter.routeName: (context) => const NeedAPainter(),
-  BottomNavBar.routeName: (context) => BottomNavBar()
+  // BottomNavBar.routeName: (context) => BottomNavBar()
+  // CustomBottomNavbar.routeName: (context) => const CustomBottomNavbar(),
+
+  
 
   // Interior_ColorPalleteGrid.routeName: (context) => const Interior_ColorPalleteGrid(),
 };

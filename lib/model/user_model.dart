@@ -1,11 +1,13 @@
 class Usermodel {
   String? uid;
   String? email;
-  // String? nickname;
-
-  Usermodel({this.uid, this.email,
-  //  this.nickname
-   });
+  String? username;
+  
+  Usermodel({
+    this.uid,
+    this.email,
+    this.username,
+  });
 
   //receive data to server
 
@@ -13,16 +15,15 @@ class Usermodel {
     return Usermodel(
       uid: map['uid'],
       email: map['email'],
-      // nickname: map['nickname']
-      );
+      username: map['username']
+    );
   }
   //sending data to server
-  Map<String,dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
-      'uid':uid,
-      'email':email,
-      // 'nickname':nickname,
+      'uid': uid,
+      'email': email,
+      'username':username,
     };
-
-  } 
+  }
 }

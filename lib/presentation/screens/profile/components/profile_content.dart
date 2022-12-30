@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sun_bright/presentation/screens/profile/components/Edit_Profile.dart';
 
 import '../../sign_in/sign_in_screen.dart';
 import 'profile_menu.dart';
@@ -16,29 +17,40 @@ class ProfileContent extends StatelessWidget {
         children: [
           const ProfilePicture(),
           SizedBox(
-            height: MediaQuery.of(context).size.height*0.02,
+            height: MediaQuery.of(context).size.height * 0.02,
           ),
-          ProfileMenu(
-              text: "My Account",
+          InkWell(
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => EditProfileScreen()))),
+            child: ProfileMenu(
+              text: "Edit Profile",
               icon: const Icon(
                 Icons.supervised_user_circle,
-                
               ),
-              onPressed: () {}, icon2: Icons.person,),
+              onPressed: () {},
+              icon2: Icons.person,
+            ),
+          ),
           ProfileMenu(
             text: "Notification",
-            icon: const Icon(Icons.notification_add_outlined,color: Color.fromARGB(255, 253, 0, 0),),
-            onPressed: () {}, icon2: Icons.notifications,
+            icon: const Icon(
+              Icons.notification_add_outlined,
+              color: Color.fromARGB(255, 253, 0, 0),
+            ),
+            onPressed: () {},
+            icon2: Icons.notifications,
           ),
           ProfileMenu(
             text: "Settings",
             icon: const Icon(Icons.supervised_user_circle),
-            onPressed: () {}, icon2: Icons.settings,
+            onPressed: () {},
+            icon2: Icons.settings,
           ),
           ProfileMenu(
             text: "Help Center",
             icon: const Icon(Icons.supervised_user_circle),
-            onPressed: () {}, icon2: Icons.help,
+            onPressed: () {},
+            icon2: Icons.help,
           ),
           ProfileMenu(
             text: "Log Out",
@@ -50,7 +62,8 @@ class ProfileContent extends StatelessWidget {
                 (Route<dynamic> route) => false,
               );
               // Navigator.pushReplacementNamed(context, SignInScreen.routeName);
-            }, icon2: Icons.logout,
+            },
+            icon2: Icons.logout,
           ),
         ],
       ),
