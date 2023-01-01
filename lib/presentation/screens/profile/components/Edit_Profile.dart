@@ -1,11 +1,17 @@
+
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:sun_bright/data/models/user.dart';
 import 'package:sun_bright/model/user_model.dart';
 import 'package:sun_bright/presentation/screens/profile/components/Customtextfield.dart';
 import 'package:sun_bright/presentation/screens/profile/components/DateContainer.dart';
+import 'package:firebase_storage/firebase_storage.dart' as fstorage;
 
 class EditProfileScreen extends StatefulWidget {
   // const EditProfileScreen({Key? key}) : super(key: key);
@@ -15,9 +21,12 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+
+ String imageURL = "";
+
   Usermodel loggedInUser = Usermodel();
   String name = "";
- var user = FirebaseAuth.instance.currentUser;
+  var user = FirebaseAuth.instance.currentUser;
   // FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController user_name = TextEditingController();
 
@@ -33,6 +42,33 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     setState(() {
       name = getname.data()!['username'];
     });
+  }
+
+  void pickUploadImage() async{
+    //  String fileName = DateTime.now().microsecondsSinceEpoch.toString();
+    //  fstorage.Reference reference = fstorage.FirebaseStorage.instance.ref().child("userImages").child(fileName): 
+    //  fstorage.UploadTask uploadTask = reference.putFile(File(ima)
+    //  fstorage.Tasl
+
+    final image = await ImagePicker().pickImage(
+    source: ImageSource.gallery,
+    maxWidth:512,
+    maxHeight: 512,
+    imageQuality: 75, );
+
+    Reference ref = FirebaseStorage.instance.ref().child('profilepic.jpg');
+
+//upload image 
+    await ref.putFile(File(image!.path));
+
+//image url
+    ref.getDownloadURL().then((value) {
+      print(value);
+      setState(() {
+        imageURL = value;
+      });
+    });
+
   }
 
   @override
@@ -84,18 +120,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                    children: [ 
+
                       Container(
-                        height: 110,
-                        width: 110,
+                        height: 120,
+                        width: 120,
                         decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: AssetImage(
-                                'assets/images/wahaj.jpeg',
-                              ),
-                              fit: BoxFit.cover),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          // shape: BoxShape.circle, 
+    
                         ),
+                        child: Center(
+                          child: imageURL == " " ? Icon(Icons.person,size:80,color: Colors.black) :Image.network(imageURL) ,
+                        )
                       ),
                       SizedBox(
                         height: size.height * 0.03,
@@ -109,14 +146,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                     ],
                   ),
-                  const Positioned(
-                      right: 24,
-                      bottom: 42,
-                      child: CircleAvatar(
-                        maxRadius: 18,
-                        child: Icon(
-                          Icons.edit,
-                          size: 22,
+                   Positioned(
+                      right: 10,
+                      bottom: 45,
+                      child: InkWell(
+                        onTap:() {
+                          pickUploadImage();
+                        },
+                        child: CircleAvatar(
+                          maxRadius: 18,
+                          child: Icon(
+                            Icons.edit,
+                            size: 22,
+                          ),
                         ),
                       ))
                 ],
@@ -304,7 +346,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 .doc(user!.uid);
 
                             // update specific fields
-                            docuser.update({'username':user_name.text});
+                            docuser.update({'username': user_name.text});
                           },
                           child: Center(
                             child: Container(

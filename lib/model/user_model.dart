@@ -1,4 +1,4 @@
-class Usermodel {
+class Usermodel { 
   String? uid;
   String? email;
   String? username;

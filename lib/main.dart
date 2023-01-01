@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<FavoriteBloc>(
           create: (_) => FavoriteBloc(),
-        ),  
+        ),      
         BlocProvider<SearchBloc>(
           create: (_) => SearchBloc(),
         ),

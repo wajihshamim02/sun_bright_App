@@ -25,9 +25,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-  
-  final TextEditingController _confirmpasswordController =
-      TextEditingController();
+  final TextEditingController _confirmpasswordController = TextEditingController();
 
   final _auth = FirebaseAuth.instance;
 
