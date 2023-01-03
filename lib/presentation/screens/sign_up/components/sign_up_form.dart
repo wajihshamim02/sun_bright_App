@@ -11,6 +11,7 @@ import '../../../../constants/colors.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_page_transition.dart';
 import '../../complete_profile/complete_profile.dart';
+import '../../profile/components/DateContainer.dart';
 import '../sign_up_screen.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -25,7 +26,8 @@ class _SignUpFormState extends State<SignUpForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _confirmpasswordController = TextEditingController();
+  final TextEditingController _confirmpasswordController =
+      TextEditingController();
 
   final _auth = FirebaseAuth.instance;
 
@@ -63,7 +65,7 @@ class _SignUpFormState extends State<SignUpForm> {
     // writing all the values
     usermodel.email = user!.email;
     usermodel.uid = user.uid;
-    // usermodel.nickname = nicknameController.text;
+    usermodel.username = _usernameController.text;
 
     await firebaseFirestore
         .collection("users")
@@ -75,18 +77,18 @@ class _SignUpFormState extends State<SignUpForm> {
         context, MaterialPageRoute(builder: ((context) => SignInScreen())));
   }
 
+  DateTime date1 = DateTime(2000, 02, 13);
+  int gender = 0;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Form(
         key: _formKey,
         child: Column(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-             Container(
+            Container(
                 width: double.infinity, height: 80, child: userFormField()),
             Container(
                 width: double.infinity, height: 80, child: emailFormField()),
@@ -96,7 +98,107 @@ class _SignUpFormState extends State<SignUpForm> {
                 width: double.infinity,
                 height: 80,
                 child: confirmPasswordFormField()),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  child: Row(
+                    children: [
+                      Radio(
+                        fillColor: MaterialStateColor.resolveWith(
+                            (states) => Colors.black87),
+                        value: 1,
+                        groupValue: gender,
+                        onChanged: (value) {
+                          setState(() {
+                            gender = 1;
+                          });
+                        },
+                      ),
+                      Text("Male"),
+                    ],
+                  ),
+                ),
+                Container(
+                  child: Row(
+                    children: [
+                      Radio(
+                        fillColor: MaterialStateColor.resolveWith(
+                            (states) => Colors.black87),
+                        value: 2,
+                        groupValue: gender,
+                        onChanged: (value) {
+                          setState(() {
+                            gender = 2;
+                          });
+                        },
+                      ),
+                      Text("Female"),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+
+            //date of birth
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DateContainer(
+                  datevalue: '${date1.day}',
+                ),
+                DateContainer(
+                  datevalue: '${date1.month}',
+                ),
+                DateContainer(
+                  datevalue: '${date1.year}',
+                ),
+              ],
+            ),
             SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            InkWell(
+              onTap: () async {
+                DateTime? datepicked = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1930),
+                    lastDate: DateTime(2024),
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: ColorScheme.light(
+                            primary: Colors.black87,
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    });
+
+                if (datepicked != null) {
+                  //  print("Date Picked ${datepicked.day}-${datepicked.month}-${datepicked.year}");
+                  setState(() {
+                    date1 = datepicked;
+                  });
+                }
+              },
+              child: Container(
+                width: 80,
+                height: 30,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.black87
+                   
+                    ),
+                child: Center(
+                    child: Text(
+                  "Edit",
+                  style: TextStyle(color: Colors.white),
+                )),
+              ),
+            ),
+           SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             CustomButton(
@@ -105,7 +207,10 @@ class _SignUpFormState extends State<SignUpForm> {
               forgroundColor: Colors.white,
               width: MediaQuery.of(context).size.width * 0.85,
               onPressed: () {
-                signup(_emailController.text, _passwordController.text,);
+                signup(
+                  _emailController.text,
+                  _passwordController.text,
+                );
               },
             ),
             SizedBox(
@@ -138,17 +243,16 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-TextFormField userFormField() {
+  TextFormField userFormField() {
     return TextFormField(
       controller: _usernameController,
       validator: (value) {
         if (value!.isEmpty) {
           return ("Please Enter your User name ");
         }
-       
+
         return null;
       },
-   
       onFieldSubmitted: (newuser) {
         passwordFocusNode.requestFocus();
       },
@@ -157,10 +261,8 @@ TextFormField userFormField() {
           labelText: "User",
           hintText: "Username",
           suffixIcon: Icon(Icons.person)),
-    
     );
   }
-
 
   TextFormField emailFormField() {
     return TextFormField(
@@ -250,21 +352,18 @@ TextFormField userFormField() {
     return TextFormField(
       controller: _confirmpasswordController,
       focusNode: confirmPasswordFocusNode,
-    
-        validator: (value) {
-
-          if(value == null || value.isEmpty){
-            return 'Please Enter Confirm Password';
-          }
-          if (_confirmpasswordController.text !=
-              _passwordController.text) {
-            return "Password don't match";
-          }
-          return null;
-        },
-        onSaved: (value) {
-          _confirmpasswordController.text = value!;
-        },
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please Enter Confirm Password';
+        }
+        if (_confirmpasswordController.text != _passwordController.text) {
+          return "Password don't match";
+        }
+        return null;
+      },
+      onSaved: (value) {
+        _confirmpasswordController.text = value!;
+      },
       keyboardType: TextInputType.visiblePassword,
       obscureText: false,
       decoration: const InputDecoration(

@@ -11,7 +11,7 @@ class CustomTextfield extends StatefulWidget {
       required this.text_label,
       required this.icon1,
       required this.obscure_text,
-      required this.controller_value})
+      required this.controller_value,})
       : super(key: key);
 
   @override
