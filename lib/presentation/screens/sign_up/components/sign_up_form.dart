@@ -228,7 +228,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   context,
                   CustomScaleTransition(
                       nextPageUrl: SignInScreen.routeName,
-                      nextPage: const SignInScreen())),
+                      nextPage:   SignInScreen())),
               child: const Text(
                 "Login",
                 style: TextStyle(

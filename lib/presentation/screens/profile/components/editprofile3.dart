@@ -1,34 +1,32 @@
 import 'dart:io';
 
-import 'package:booking_app/Edit%20Profile%20Screen/components/DateContainer.dart';
-import 'package:booking_app/settings.dart';
-import 'package:booking_app/user_model.dart';
-import 'package:booking_app/widgets/customTextfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:sun_bright/model/user_model.dart';
+import 'package:sun_bright/presentation/screens/profile/components/Customtextfield.dart';
+import 'package:sun_bright/presentation/screens/profile/components/DateContainer.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
-class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({Key? key}) : super(key: key);
+class Editprofile3 extends StatefulWidget {
+  const Editprofile3({Key? key}) : super(key: key);
 
   @override
-  _EditProfileScreenState createState() => _EditProfileScreenState();
+  _Editprofile3State createState() => _Editprofile3State();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
-  // TextEditingController genderr = TextEditingController();
-
+class _Editprofile3State extends State<Editprofile3> {
   FirebaseAuth _auth = FirebaseAuth.instance;
   File? _image;
   final picker = ImagePicker();
   String imageUrl = "";
   DateTime date1 = DateTime(2000, 02, 13);
   String gender = "";
-  String name = " Name is Loading";
+  String name = "Loading";
   String email = "Email is loading";
+  String profilePicLink = "";
 
   void get() async {
     TextEditingController _username;
@@ -43,24 +41,47 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       email = getName.data()!['email'];
       name = getName.data()!['username'];
       gender = getName.data()!['gender'];
+      profilePicLink = getName.data()!['imageUrl'];
+      // date1 = getName.data()!['date1'];
     });
+    // setState(() {
+
+    // });
   }
 
   late TextEditingController user_name;
 
-  pickImageFromGallery() async {
-    XFile? pickedFile =
-        await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+  // pickImageFromGallery() async {
+  //   XFile? pickedFile =
+  //       await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
 
-    if (pickedFile != null) {
-      _image = File(pickedFile.path);
-    } else {
-      print("no image picked");
-    }
-    File image = File(pickedFile!.path);
+  //   if (pickedFile != null) {
+  //     _image = File(pickedFile.path);
+  //   } else {
+  //     print("no image picked");
+  //   }
+  //   File image = File(pickedFile!.path);
 
-    setState(() {
-      _image = imageUrl as File?;
+  //   setState(() {
+  //     _image = imageUrl as File?;
+  //   });
+  // }
+
+  void pickUploadProfilePic() async {
+    final image = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxHeight: 512,
+      maxWidth: 512,
+      imageQuality: 90,
+    );
+    Reference ref = FirebaseStorage.instance.ref().child("profilepic.jpg");
+
+    await ref.putFile(File(image!.path));
+
+    ref.getDownloadURL().then((value) async {
+      setState(() {
+        profilePicLink = value;
+      });
     });
   }
 
@@ -80,13 +101,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         flexibleSpace: Container(
           decoration: const BoxDecoration(
               gradient: LinearGradient(
-                  colors: <Color>[Color(0xff7a71ad), Color(0xffaea8dd)])),
+                  colors: <Color>[Colors.black87, Colors.black])),
         ),
         centerTitle: true,
         leading: GestureDetector(
           onTap: () {
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: (context) => SettingsScreens()));
+            Navigator.pop(context);
           },
           child: const Icon(
             Icons.arrow_back_ios,
@@ -107,38 +127,44 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               height: size.height * 0.03,
             ),
             Center(
+              
               child: Stack(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          // pickImageFromGallery();
-                        },
-                        child: Container(
-                            height: 110,
+                    
+                      Center(
+                        child: profilePicLink == "" ? Icon(Icons.person,size: 70,color: Colors.black87,) : Container(
+                           height: 110,
                             width: 110,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.black, width: 1),
-                              // image: DecorationImage(
-                              //     image: AssetImage(
-                              //       'assets/images/wahaj.png',
-                              //     ),
-                              //     fit: BoxFit.cover),
-                            ),
-                            child: _image != null
-                                ? Image.network(imageUrl)
-                                : Center(
-                                    child: Icon(Icons.image),
-                                  )),
+                          decoration: BoxDecoration(
+                           borderRadius: BorderRadius.all(Radius.circular(25)),
+                         
+                            image: DecorationImage(
+                              image: NetworkImage(profilePicLink),fit: BoxFit.cover),
+                           
+                          ),
+                          // child: Center(
+                          //   child: profilePicLink == ""
+                          //       ? const Icon(
+                          //           Icons.person,
+                          //           color: Colors.black87,
+                          //           size: 80,
+                          //         )
+                          //       : ClipRRect(
+                          //           borderRadius: BorderRadius.circular(20),
+                                    
+                          //           child: Image.network(profilePicLink),
+                          //         ),
+                          // ),
+                        ),
                       ),
                       SizedBox(
                         height: size.height * 0.02,
                       ),
                       Text(
-                        gender,
+                        name,
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
@@ -146,21 +172,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                     ],
                   ),
-                  InkWell(
-                    onTap: () {
-                      pickImageFromGallery();
-                    },
-                    child: const Positioned(
-                        left: 10,
-                        bottom: 42,
+                   Positioned(
+                      // left: 10,
+                      // bottom: 42,
+                      right: 132,
+                      bottom: 35, 
+                      child: InkWell(
+                        onTap: () {
+                      pickUploadProfilePic();
+                        },
                         child: CircleAvatar(
-                          maxRadius: 18,
-                          child: Icon(
-                            Icons.edit,
-                            size: 22,
-                          ),
-                        )),
-                  )
+                       maxRadius: 18,
+                       child: Icon(
+                         Icons.edit,
+                         size: 22,
+                       ),
+                        ),
+                      ),
+                   )
                 ],
               ),
             ),
@@ -176,13 +205,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     text_label: 'Username',
                     icon1: const Icon(
                       Icons.person_outline,
-                      color: Colors.black,
+                      color: Colors.black87,
                       size: 20,
                     ),
                     obscure_text: false,
                     controller_value: user_name,
-                    validation_value: '',
-                    onChanged_value: '',
                   ),
                   SizedBox(
                     height: size.height * 0.03,
@@ -221,7 +248,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           children: [
                             Radio(
                               fillColor: MaterialStateColor.resolveWith(
-                                  (states) => Color(0xff7a71ad)),
+                                  (states) => Colors.black87),
                               value: "Male",
                               groupValue: gender,
                               onChanged: (value) {
@@ -241,7 +268,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           children: [
                             Radio(
                               fillColor: MaterialStateColor.resolveWith(
-                                  (states) => Color(0xff7a71ad)),
+                                  (states) => Colors.black87),
                               value: "Female",
                               groupValue: gender,
                               onChanged: (value) {
@@ -296,12 +323,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(1930),
-                                lastDate: DateTime(2023),
+                                lastDate: DateTime(2024),
                                 builder: (context, child) {
                                   return Theme(
                                     data: Theme.of(context).copyWith(
                                       colorScheme: ColorScheme.light(
-                                        primary: Color(0xff7a71ad),
+                                        primary: Colors.black87,
                                       ),
                                     ),
                                     child: child!,
@@ -321,7 +348,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               gradient: const LinearGradient(
-                                colors: [Color(0xff7a71ad), Color(0xffaea8dd)],
+                                colors: [Colors.black87, Colors.black],
                               ),
                             ),
                             child: const Center(
@@ -345,29 +372,30 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
                             docUser.update({
                               'username': user_name.text,
-                              'imageUrl': imageUrl,
-                              // 'dateOfBirth': date1
+                              'imageUrl': profilePicLink,
+                              'date1': date1,
+                              'gender': gender,
                               // 'gender': gender == 1 ? "male" : "Female"
                             });
 
                             DateTime.now().millisecondsSinceEpoch.toString();
-                            
-                            firebase_storage.Reference ref = firebase_storage
-                                .FirebaseStorage.instance
-                                .ref('/UserProfileImage/' +
-                                    DateTime.now()
-                                        .millisecondsSinceEpoch
-                                        .toString());
-                            firebase_storage.UploadTask uploadTask =
-                                ref.putFile(_image!.absolute);
-                            await Future.value(uploadTask);
-                            ref.getDownloadURL().then((value) {
-                              setState(() {
-                                imageUrl = value;
-                              });
-                            });
-                            // ignore: use_build_context_synchronously
-                            addInfoToFirebase();
+
+                            // firebase_storage.Reference ref = firebase_storage
+                            //     .FirebaseStorage.instance
+                            //     .ref('/UserProfileImage/' +
+                            //         DateTime.now()
+                            //             .millisecondsSinceEpoch
+                            //             .toString());
+                            // firebase_storage.UploadTask uploadTask =
+                            //     ref.putFile(_image!.absolute);
+                            // await Future.value(uploadTask);
+                            // ref.getDownloadURL().then((value) {
+                            //   setState(() {
+                            //     imageUrl = value;
+                            //   });
+                            // });
+                            // // ignore: use_build_context_synchronously
+                            // addInfoToFirebase();
                           },
                           child: Center(
                             child: Container(
@@ -376,13 +404,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xff7a71ad),
-                                    Color(0xffaea8dd)
-                                  ],
+                                  colors: [Colors.black87, Colors.black],
                                 ),
                               ),
-                              child: Center(
+                              child: const Center(
                                   child: Text(
                                 "Submit",
                                 style: TextStyle(color: Colors.white),
@@ -412,7 +437,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     // writing all the values
     usermodel.gender = gender;
     usermodel.imageUrl = imageUrl;
-    usermodel.dateOfBirth = date1 as String;
+    usermodel.date1 = date1 as String;
 
     usermodel.username = user_name.text;
     // usermodel.username = user!.email;

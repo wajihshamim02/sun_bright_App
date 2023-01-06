@@ -52,6 +52,8 @@ dependencies:
   firebase_auth: ^4.2.3
   firebase_storage: ^11.0.10
   image_picker: ^0.8.6
+  flutter_secure_storage: ^7.0.1
+  shared_preferences: ^2.0.15
 
 flutter_native_splash:
     # background_image: assets/images/splash1.png

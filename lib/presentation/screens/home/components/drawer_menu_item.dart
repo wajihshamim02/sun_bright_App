@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sun_bright/constants/colors.dart';
 import 'package:sun_bright/constants/text_style.dart';
@@ -24,6 +25,10 @@ class DrawerMenuItem extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: () {
+          Future<void> _signOut() async {
+            await FirebaseAuth.instance.signOut();
+          }
+
           Navigator.pushNamed(
             context,
             pageUrl,

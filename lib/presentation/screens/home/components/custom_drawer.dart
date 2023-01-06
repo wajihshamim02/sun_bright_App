@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sun_bright/presentation/screens/sign_up/sign_up_screen.dart';
 
 
 import '../../../../Utilities/size_config.dart';
@@ -10,13 +12,16 @@ import 'drawer_menu_item.dart';
 
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({Key? key}) : super(key: key);
+
+
+   CustomDrawer({Key? key}) : super(key: key);
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -102,6 +107,5 @@ class _CustomDrawerState extends State<CustomDrawer> {
       ]),
     );
   }
-
 }
 

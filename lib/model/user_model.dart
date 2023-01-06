@@ -2,7 +2,7 @@ class Usermodel {
   String? uid;
   String? email;
   String? username;
-  String? imageURL;
+  String? imageUrl;
   String? gender;
   String? date1;
   
@@ -10,7 +10,7 @@ class Usermodel {
     this.uid,
     this.email,
     this.username,
-    this.imageURL,
+    this.imageUrl,
     this.gender,
     this.date1,
   });
@@ -22,7 +22,7 @@ class Usermodel {
       uid: map['uid'],
       email: map['email'],
       username: map['username'],
-      imageURL: map['imageurl'],
+      imageUrl: map['imageUrl'],
       gender: map['gender'],
       date1: map['date1'],
     );
@@ -33,7 +33,7 @@ class Usermodel {
       'uid': uid,
       'email': email,
       'username':username,
-      'imageurl':imageURL,
+      'imageUrl':imageUrl,
       'gender':gender,
       'date1':date1
     };

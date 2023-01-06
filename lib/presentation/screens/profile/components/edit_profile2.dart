@@ -1,33 +1,35 @@
 import 'dart:io';
 
+// import 'package:booking_app/Edit%20Profile%20Screen/components/DateContainer.dart';
+// import 'package:booking_app/settings.dart';
+// import 'package:booking_app/user_model.dart';
+// import 'package:booking_app/widgets/customTextfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sun_bright/data/models/user.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:sun_bright/model/user_model.dart';
 import 'package:sun_bright/presentation/screens/profile/components/Customtextfield.dart';
 import 'package:sun_bright/presentation/screens/profile/components/DateContainer.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
-class EditProfileScreen extends StatefulWidget {
-  // const EditProfileScreen({Key? key}) : super(key: key);
+class EditProfileScreen2 extends StatefulWidget {
+  const EditProfileScreen2({Key? key}) : super(key: key);
 
   @override
   _EditProfileScreenState createState() => _EditProfileScreenState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
-   FirebaseAuth _auth = FirebaseAuth.instance;
+class _EditProfileScreenState extends State<EditProfileScreen2> {
+  // TextEditingController genderr = TextEditingController();
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
   File? _image;
   final picker = ImagePicker();
   String imageUrl = "";
   DateTime date1 = DateTime(2000, 02, 13);
   String gender = "";
-  String name = " Name is Loading";
+  String name =   "Loading";
   String email = "Email is loading";
 
   void get() async {
@@ -43,10 +45,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       email = getName.data()!['email'];
       name = getName.data()!['username'];
       gender = getName.data()!['gender'];
-      date1 = getName.data()!['date1'];
+      imageUrl = getName.data()!['imageUrl'];
+      // date1 = getName.data()!['date1'];
     });
-
+    // setState(() {
+      
+    // });
   }
+
+
 
   late TextEditingController user_name;
 
@@ -65,60 +72,31 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       _image = imageUrl as File?;
     });
   }
-  
-
-  
-  // postDetailToFirestore() async {
-  //   //calling our firestore
-  //   //calling our usermodel
-  //   //sedning these values
-
-  //   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-
-  //   Usermodel usermodel = Usermodel();
-
-  //   // writing all the values
-  //   usermodel.email = user!.email;
-  //   usermodel.uid = user!.uid;
-  //   // usermodel.username = _usernameController.text;
-
-  //   await firebaseFirestore
-  //       .collection("users")
-  //       .doc(user?.uid)
-  //       .set(usermodel.toMap());
-
-  //   // Fluttertoast.showToast(msg: 'Account created Successfully ');
-  //   // Navigator.push(
-  //   //     context, MaterialPageRoute(builder: ((context) => SignInScreen())));
-  // }
 
   @override
   void initState() {
-     user_name = TextEditingController();
-    super.initState();
+    user_name = TextEditingController();
     get();
-    // FirebaseFirestore.instance
-    //     .collection("users")
-    //     .doc(user!.uid)
-    //     .get()
-    //     .then((value) {
-    //   this.loggedInUser = Usermodel.fromMap(value.data());
-    //   setState(() {});
-    // });
+    super.initState();
   }
 
-  DateTime DOB = DateTime(2000, 02, 13);
-  // String gender = "";
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Colors.black87,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: <Color>[Colors.black87, Colors.black])),
+        ),
         centerTitle: true,
         leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
+          onTap: () {
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => SettingsScreens()));
+          },
           child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
@@ -144,20 +122,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                          height: 120,
-                          width: 120,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            // shape: BoxShape.circle,
+                          height: 110,
+                          width: 110,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.black, width: 1),
+                            // image: DecorationImage(
+                            //     image: AssetImage(
+                            //       'assets/images/wahaj.png',
+                            //     ),
+                            //     fit: BoxFit.cover),
                           ),
-                          child: Center(
-                            child:  _image == ""
-                                ? Icon(Icons.person,
-                                    size: 80, color: Colors.black)
-                                : Image.network(imageUrl),
-                          )),
+                          child: _image != null
+                              ? Image.network(imageUrl)
+                              : Center(
+                                  child: Icon(Icons.person),
+                                )),
                       SizedBox(
-                        height: size.height * 0.03,
+                        height: size.height * 0.02,
                       ),
                       Text(
                         name,
@@ -168,21 +150,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                     ],
                   ),
-                  Positioned(
-                      right: 10,
-                      bottom: 45,
-                      child: InkWell(
-                        onTap: () {
-                          pickImageFromGallery();
-                        },
+                  InkWell(
+                    onTap: () {
+                      pickImageFromGallery();
+                    },
+                    child: const Positioned(
+                        left: 10,
+                        bottom: 42,
                         child: CircleAvatar(
                           maxRadius: 18,
                           child: Icon(
                             Icons.edit,
                             size: 22,
                           ),
-                        ),
-                      ))
+                        )),
+                  )
                 ],
               ),
             ),
@@ -195,23 +177,36 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     height: size.height * 0.02,
                   ),
                   CustomTextfield(
-                    controller_value: user_name,
                     text_label: 'Username',
                     icon1: const Icon(
                       Icons.person_outline,
-                      color: Colors.black87,
+                      color:Colors.black87,
                       size: 20,
                     ),
                     obscure_text: false,
+                    controller_value: user_name,
+                   
                   ),
                   SizedBox(
                     height: size.height * 0.03,
                   ),
+                  // CustomTextfield(
+                  //   text_label: 'Password',
+                  //   icon1: const Icon(
+                  //     Icons.key,
+                  //     color: Colors.black,
+                  //     size: 20,
+                  //   ),
+                  //   obscure_text: true,
+                  //   controller_value: password_controller,
+                  //   onChanged_value: '',
+                  //   validation_value: '',
+                  // ),
                   SizedBox(
                     height: size.height * 0.03,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Text(
                       "Gender",
                       style:
@@ -235,6 +230,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               onChanged: (value) {
                                 setState(() {
                                   gender = value!;
+
+                                  print(value);
                                 });
                               },
                             ),
@@ -247,12 +244,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           children: [
                             Radio(
                               fillColor: MaterialStateColor.resolveWith(
-                                  (states) => Colors.black87),
+                                  (states) =>Colors.black87),
                               value: "Female",
                               groupValue: gender,
                               onChanged: (value) {
                                 setState(() {
                                   gender = value!;
+                                  print(value);
                                 });
                               },
                             ),
@@ -270,7 +268,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Date of Birth",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
@@ -279,16 +277,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           height: size.height * 0.02,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             DateContainer(
-                              datevalue: '${DOB.day}',
+                              datevalue: '${date1.day}',
                             ),
                             DateContainer(
-                              datevalue: '${DOB.month}',
+                              datevalue: '${date1.month}',
                             ),
                             DateContainer(
-                              datevalue: '${DOB.year}',
+                              datevalue: '${date1.year}',
                             ),
                           ],
                         ),
@@ -306,7 +304,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   return Theme(
                                     data: Theme.of(context).copyWith(
                                       colorScheme: ColorScheme.light(
-                                        primary: Colors.black87,
+                                        primary:Colors.black87,
                                       ),
                                     ),
                                     child: child!,
@@ -316,46 +314,48 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             if (datepicked != null) {
                               //  print("Date Picked ${datepicked.day}-${datepicked.month}-${datepicked.year}");
                               setState(() {
-                                DOB = datepicked;
+                                date1 = datepicked;
                               });
                             }
                           },
                           child: Container(
-                            width: 80,
+                            width: 70,
                             height: 30,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.black87
-                               
-                                ),
-                            child: Center(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: const LinearGradient(
+                                colors: [Colors.black87,Colors.black],
+                              ),
+                            ),
+                            child: const Center(
                                 child: Text(
                               "Edit",
                               style: TextStyle(color: Colors.white),
                             )),
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
+                        const SizedBox(
+                          height: 30,
                         ),
                         InkWell(
                           onTap: () async {
-
                             User? user =
                                 await FirebaseAuth.instance.currentUser;
 
-                            final docuser = FirebaseFirestore.instance
+                            final docUser = FirebaseFirestore.instance
                                 .collection('users')
                                 .doc(user!.uid);
 
-                            docuser.update({
+                            docUser.update({
                               'username': user_name.text,
-                              'imageURL': imageUrl,
-                              "DOB": DOB,
-                              'gender': gender
+                              'imageUrl': imageUrl,
+                              'date1': date1,
+                              'gender': gender,
+                              // 'gender': gender == 1 ? "male" : "Female"
                             });
-                             
+
                             DateTime.now().millisecondsSinceEpoch.toString();
+                            
                             
                             firebase_storage.Reference ref = firebase_storage
                                 .FirebaseStorage.instance
@@ -371,18 +371,25 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 imageUrl = value;
                               });
                             });
-                            
+                            // ignore: use_build_context_synchronously
+                            addInfoToFirebase();
                           },
                           child: Center(
                             child: Container(
+                              width: 90,
                               height: 40,
-                              width: 100,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.black87),
-                              child: Center(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: const LinearGradient(
+                                  colors: [
+                                   Colors.black87,
+                                   Colors.black
+                                  ],
+                                ),
+                              ),
+                              child: const Center(
                                   child: Text(
-                                'Submit',
+                                "Submit",
                                 style: TextStyle(color: Colors.white),
                               )),
                             ),
@@ -398,5 +405,29 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
       ),
     );
+  }
+
+  addInfoToFirebase() async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+    User? user = _auth.currentUser;
+
+    Usermodel usermodel = Usermodel();
+
+    // writing all the values
+    usermodel.gender = gender;
+    usermodel.imageUrl = imageUrl;
+    usermodel.date1 = date1 as String;
+
+    usermodel.username = user_name.text;
+    // usermodel.username = user!.email;
+
+    usermodel.uid = user!.uid;
+    usermodel.email = user.email;
+
+    await firebaseFirestore
+        .collection("users")
+        .doc(user.uid)
+        .set(usermodel.toMap());
   }
 }

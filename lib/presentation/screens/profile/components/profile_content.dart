@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sun_bright/presentation/screens/profile/components/Edit_Profile.dart';
+import 'package:sun_bright/presentation/screens/profile/components/edit_profile2.dart';
+import 'package:sun_bright/presentation/screens/profile/components/editprofile3.dart';
 
 import '../../sign_in/sign_in_screen.dart';
 import 'profile_menu.dart';
@@ -21,7 +23,7 @@ class ProfileContent extends StatelessWidget {
           ),
           InkWell(
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: ((context) => EditProfileScreen()))),
+                MaterialPageRoute(builder: ((context) => Editprofile3()))),
             child: ProfileMenu(
               text: "Edit Profile",
               icon: const Icon(
@@ -58,7 +60,7 @@ class ProfileContent extends StatelessWidget {
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const SignInScreen()),
+                MaterialPageRoute(builder: (context) =>  SignInScreen()),
                 (Route<dynamic> route) => false,
               );
               // Navigator.pushReplacementNamed(context, SignInScreen.routeName);

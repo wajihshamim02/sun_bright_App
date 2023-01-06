@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sun_bright/constants/colors.dart';
 import 'package:sun_bright/presentation/screens/sign_up/sign_up_screen.dart';
 import 'package:sun_bright/presentation/widgets/custom_bottom_navbar.dart';
@@ -22,7 +23,6 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -40,6 +40,11 @@ class _SignInFormState extends State<SignInForm> {
   }
 
   void signin(String email, String password) async {
+
+ 
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance(); 
+    sharedPreferences.setString('email', _emailController.text);
+    
     if (_formKey.currentState!.validate()) {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
@@ -130,7 +135,6 @@ class _SignInFormState extends State<SignInForm> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                
                 InkWell(
                   onTap: () => Navigator.push(
                       context,

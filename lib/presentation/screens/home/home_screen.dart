@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return  Scaffold(
       //  bottomNavigationBar:  const CustomBottomNavbar(),
           body:  (isDeviceConnected) ? Stack(
-            children: const [
+            children:  [
                CustomDrawer(),
                HomeContent(),
             ]
